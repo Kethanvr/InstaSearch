@@ -3,34 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SearchMe</title>
+    <title>Search Results</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 font-sans">
     <div class="container mx-auto p-4">
-        <h1 class="text-3xl font-bold text-center text-blue-600 mb-4">SearchMe - Image Finder</h1>
-
-        <!-- Search Section -->
-        <div class="flex justify-center items-center mb-6">
-            <input 
-                id="search-input" 
-                type="text" 
-                placeholder="Search for images..." 
-                class="border border-gray-300 rounded-l px-4 py-2 w-1/2 focus:outline-none focus:ring focus:border-blue-300"
-            >
-            <button 
-                id="search-btn" 
-                class="bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600 transition"
-            >
-                Search
-            </button>
-        </div>
-
-        <!-- Error Message -->
-        <p id="error-msg" class="text-red-500 text-center hidden">Failed to search images</p>
+        <!-- Header -->
+        <header class="text-center mb-6">
+            <h1 class="text-3xl font-bold text-blue-600">Search Results</h1>
+            <p class="text-gray-600">Here are the images matching your query</p>
+        </header>
 
         <!-- Gallery Section -->
-        <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             <!-- Images will be dynamically inserted here -->
         </div>
 
@@ -40,27 +25,25 @@
                 id="load-more-btn" 
                 class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition hidden"
             >
-                Generate More
+                Load More
             </button>
         </div>
     </div>
 
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('query');
         const apiKey = 'ggbXfyFRtwZKhpPldtEGvhBQ6OqbVNCa-fkjJYTk1eY';
         const baseUrl = 'https://api.unsplash.com/search/photos';
-        const searchInput = document.getElementById('search-input');
-        const searchBtn = document.getElementById('search-btn');
         const gallery = document.getElementById('gallery');
-        const errorMsg = document.getElementById('error-msg');
         const loadMoreBtn = document.getElementById('load-more-btn');
 
-        let currentQuery = '';
         let currentPage = 1;
 
         // Function to fetch images
         async function fetchImages(query, page = 1) {
             try {
-                const response = await fetch(`${baseUrl}?client_id=${apiKey}&query=${query}&page=${page}`);
+                const response = await fetch(`${baseUrl}?client_id=${apiKey}&query=${query}&page=${page}&per_page=8`);
                 if (!response.ok) throw new Error('Failed to fetch');
                 const data = await response.json();
                 return data.results;
@@ -74,24 +57,16 @@
         function renderImages(images) {
             images.forEach(image => {
                 const imgElement = document.createElement('img');
-                imgElement.src = image.urls.raw;
+                imgElement.src = image.urls.regular;
                 imgElement.alt = image.slug;
                 imgElement.className = 'w-full h-60 object-cover rounded shadow';
                 gallery.appendChild(imgElement);
             });
         }
 
-        // Event Listener for Search Button
-        searchBtn.addEventListener('click', async () => {
-            const query = searchInput.value.trim();
+        // Initial fetch and render
+        async function initialize() {
             if (!query) return;
-
-            // Reset state
-            currentQuery = query;
-            currentPage = 1;
-            gallery.innerHTML = '';
-            errorMsg.classList.add('hidden');
-            loadMoreBtn.classList.add('hidden');
 
             const images = await fetchImages(query);
 
@@ -99,14 +74,14 @@
                 renderImages(images);
                 loadMoreBtn.classList.remove('hidden');
             } else {
-                errorMsg.classList.remove('hidden');
+                gallery.innerHTML = '<p class="text-center text-red-500">No results found.</p>';
             }
-        });
+        }
 
         // Event Listener for Load More Button
         loadMoreBtn.addEventListener('click', async () => {
             currentPage++;
-            const images = await fetchImages(currentQuery, currentPage);
+            const images = await fetchImages(query, currentPage);
 
             if (images && images.length > 0) {
                 renderImages(images);
@@ -114,6 +89,8 @@
                 loadMoreBtn.classList.add('hidden');
             }
         });
+
+        initialize();
     </script>
 </body>
 </html>
