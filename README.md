@@ -99,8 +99,7 @@ That’s it! 🎉 Start searching for amazing images!
 ```
 InstaSearch/
 ├── index.html      # Main HTML file
-├── styles.css      # Tailwind-based CSS styling
-├── script.js       # JavaScript functionality
+├── results.html    #result page
 └── README.md       # Project documentation (this file)
 ```
 
