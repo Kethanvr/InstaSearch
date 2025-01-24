@@ -12,6 +12,23 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        .image-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container:hover .download-btn {
+            opacity: 1;
+        }
+
+        .download-btn {
+            position: absolute;
+            bottom: 10px;
+            left: 10px; /* Changed to bottom-right */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
         @media (max-width: 768px) {
             /* Hide the navbar search form, login button, and sign-up button */
             #navbar-search-form,
@@ -119,14 +136,48 @@
             }
         }
 
+        // Function to download an image
+        function downloadImage(url, filename) {
+            fetch(url)
+                .then(response => response.blob())
+                .then(blob => {
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = filename;
+                    link.click();
+                    URL.revokeObjectURL(link.href);
+                })
+                .catch(console.error);
+        }
+
         // Function to render images
         function renderImages(images) {
             images.forEach(image => {
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'image-container relative rounded shadow hover:shadow-lg transition-shadow';
+
                 const imgElement = document.createElement('img');
                 imgElement.src = image.urls.regular;
                 imgElement.alt = image.slug;
-                imgElement.className = 'w-full h-60 object-cover rounded shadow';
-                gallery.appendChild(imgElement);
+                imgElement.className = 'w-full h-60 object-cover rounded';
+
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'download-btn cursor-pointer group relative flex gap-1.5 px-4 py-2 bg-black bg-opacity-80 text-[#f1f1f1] rounded-3xl hover:bg-opacity-70 transition font-semibold shadow-md';
+                downloadBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="20px" width="20px"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <g id="Interface / Download"> <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#f1f1f1" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" id="Vector"></path> </g> </g></svg>
+                    <div class="absolute opacity-0 -bottom-full rounded-md py-2 px-2 bg-black bg-opacity-70 left-1/2 -translate-x-1/2 group-hover:opacity-100 transition-opacity shadow-lg">
+                        Download
+                    </div>
+                `;
+
+                // Add click event to download the image
+                downloadBtn.addEventListener('click', () => {
+                    downloadImage(image.urls.full, image.slug);
+                });
+
+                imageContainer.appendChild(imgElement);
+                imageContainer.appendChild(downloadBtn);
+                gallery.appendChild(imageContainer);
             });
         }
 
