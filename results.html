@@ -1,1 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
 
+        .image-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container:hover .download-btn {
+            opacity: 1;
+        }
+
+        .download-btn {
+            position: absolute;
+            bottom: 10px;
+            left: 10px; /* Changed to bottom-right */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            /* Hide the navbar search form, login button, and sign-up button */
+            #navbar-search-form,
+            .navbar-items button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-blue-100 via-pink-100 to-purple-100 font-sans">
+    <!-- Header Section -->
+    <header class="p-4 bg-white shadow-lg fixed w-full z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-purple-600 flex items-center style=font-family: 'Poppins', sans-serif;">
+                InstaSearch 📸
+            </h1>
+            <div class="flex items-center gap-4 navbar-items">
+                <!-- Search Bar in Navbar -->
+                <form id="navbar-search-form" action="results.html" method="GET" class="relative">
+                    <input
+                        id="navbar-search-input"
+                        name="query"
+                        placeholder="Search..."
+                        class="input shadow-lg focus:border-2 border-gray-300 px-5 py-2 rounded-lg w-32 transition-all focus:w-48 outline-none"
+                        type="search"
+                    />
+                    <svg
+                        class="size-6 absolute top-2 right-2 text-gray-500"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                            stroke-linejoin="round"
+                            stroke-linecap="round"
+                        ></path>
+                    </svg>
+                </form>
+
+                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                    Login
+                </button>
+                <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
+                    Sign Up
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto p-4 pt-24"> <!-- Added pt-24 to account for the fixed header -->
+        <!-- Header -->
+        <header class="text-center mb-6">
+            <h1 class="text-3xl font-bold text-blue-600">Search Results</h1>
+            <p class="text-gray-600">Here are the images matching your query</p>
+        </header>
+
+        <!-- Gallery Section -->
+        <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <!-- Images will be dynamically inserted here -->
+        </div>
+
+        <!-- Generate More Button -->
+        <div class="text-center mt-6">
+            <button 
+                id="load-more-btn" 
+                class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition hidden"
+            >
+                Load More
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="py-6 bg-purple-600 text-white">
+        <div class="container mx-auto text-center">
+            <p class="style=font-family: 'Poppins', sans-serif text-sm">&copy; 2025 InstaSearch. All rights reserved.</p>
+            <p class="style=font-family: 'Poppins', sans-serif text-sm">Made with ❤️ for image lovers worldwide.</p>
+        </div>
+    </footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('query');
+        const apiKey = 'ggbXfyFRtwZKhpPldtEGvhBQ6OqbVNCa-fkjJYTk1eY';
+        const baseUrl = 'https://api.unsplash.com/search/photos';
+        const gallery = document.getElementById('gallery');
+        const loadMoreBtn = document.getElementById('load-more-btn');
+
+        let currentPage = 1;
+
+        // Function to fetch images
+        async function fetchImages(query, page = 1) {
+            try {
+                const response = await fetch(`${baseUrl}?client_id=${apiKey}&query=${query}&page=${page}&per_page=8`);
+                if (!response.ok) throw new Error('Failed to fetch');
+                const data = await response.json();
+                return data.results;
+            } catch (error) {
+                console.error(error);
+                return null;
+            }
+        }
+
+        // Function to download an image
+        function downloadImage(url, filename) {
+            fetch(url)
+                .then(response => response.blob())
+                .then(blob => {
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = filename;
+                    link.click();
+                    URL.revokeObjectURL(link.href);
+                })
+                .catch(console.error);
+        }
+
+        // Function to render images
+        function renderImages(images) {
+            images.forEach(image => {
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'image-container relative rounded shadow hover:shadow-lg transition-shadow';
+
+                const imgElement = document.createElement('img');
+                imgElement.src = image.urls.regular;
+                imgElement.alt = image.slug;
+                imgElement.className = 'w-full h-60 object-cover rounded';
+
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'download-btn cursor-pointer group relative flex gap-1.5 px-4 py-2 bg-black bg-opacity-80 text-[#f1f1f1] rounded-3xl hover:bg-opacity-70 transition font-semibold shadow-md';
+                downloadBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="20px" width="20px"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <g id="Interface / Download"> <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#f1f1f1" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" id="Vector"></path> </g> </g></svg>
+                    <div class="absolute opacity-0 -bottom-full rounded-md py-2 px-2 bg-black bg-opacity-70 left-1/2 -translate-x-1/2 group-hover:opacity-100 transition-opacity shadow-lg">
+                        Download
+                    </div>
+                `;
+
+                // Add click event to download the image
+                downloadBtn.addEventListener('click', () => {
+                    downloadImage(image.urls.full, image.slug);
+                });
+
+                imageContainer.appendChild(imgElement);
+                imageContainer.appendChild(downloadBtn);
+                gallery.appendChild(imageContainer);
+            });
+        }
+
+        // Initial fetch and render
+        async function initialize() {
+            if (!query) return;
+
+            const images = await fetchImages(query);
+
+            if (images && images.length > 0) {
+                renderImages(images);
+                loadMoreBtn.classList.remove('hidden');
+            } else {
+                gallery.innerHTML = '<p class="text-center text-red-500">No results found.</p>';
+            }
+        }
+
+        // Event Listener for Load More Button
+        loadMoreBtn.addEventListener('click', async () => {
+            currentPage++;
+            const images = await fetchImages(query, currentPage);
+
+            if (images && images.length > 0) {
+                renderImages(images);
+            } else {
+                loadMoreBtn.classList.add('hidden');
+            }
+        });
+
+        initialize();
+    </script>
+</body>
+</html>
