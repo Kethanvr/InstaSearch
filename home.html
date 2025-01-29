@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaSearch - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero-background {
+            background-image: url('https://4kwallpapers.com/images/wallpapers/valley-landscape-aesthetic-mountains-gradient-background--4589.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            position: relative;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+        }
+
+        @keyframes fade-in {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 1.5s ease-in-out;
+        }
+
+        .bg-gray-100 {
+            background-image: url('https://wallpaper.dog/large/20474170.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .py-12 {
+            background-image: url('https://static3.depositphotos.com/1005680/202/i/450/depositphotos_2028688-Soft-blue-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            /* Hide the 5th and 6th images in the random images section */
+            .random-images img:nth-child(5),
+            .random-images img:nth-child(6) {
+                display: none;
+            }
+
+            /* Hide the navbar items (search bar, login, and sign-up buttons) */
+            .navbar-items {
+                display: none;
+            }
+        }
+        @media (max-width: 768px) {
+            /* Hide the navbar search form, login button, and sign-up button */
+            #navbar-search-form,
+            .navbar-items button {
+                display: none;
+            }
+        }
+        #hero-search-input {
+    color: black; /* Ensure text color is black */
+    background-color: white; /* Ensure background color is white */
+}   
+    </style>
+</head>
+<body class="bg-gradient-to-r from-blue-100 via-pink-100 to-purple-100 font-sans">
+    <!-- Header Section -->
+    <header class="p-4 bg-white shadow-lg fixed w-full z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-purple-600 flex items-center style=font-family: 'Poppins', sans-serif;">
+                InstaSearch 📸
+            </h1>
+            <div class="flex items-center gap-4 navbar-items">
+                <!-- Search Bar in Navbar -->
+                <form id="navbar-search-form" action="results.html" method="GET" class="relative">
+                    <input
+                        id="navbar-search-input"
+                        name="query"
+                        placeholder="Search..."
+                        class="input shadow-lg focus:border-2 border-gray-300 px-5 py-2 rounded-lg w-32 transition-all focus:w-48 outline-none"
+                        type="search"
+                    />
+                    <svg
+                        class="size-6 absolute top-2 right-2 text-gray-500"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                            stroke-linejoin="round"
+                            stroke-linecap="round"
+                        ></path>
+                    </svg>
+                </form>
+
+                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                    Login
+                </button>
+                <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
+                    Sign Up
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero-background">
+        <div class="hero-overlay">
+            <div class="container mx-auto text-center">
+                <h2 class="text-5xl font-extrabold mb-4 animate-fade-in">
+                    Discover Stunning Images 🌟
+                </h2>
+                <p class="text-lg mb-8 animate-fade-in">
+                    Search, explore, and get inspired by millions of high-quality images from Unsplash! ✨
+                </p>
+                <!-- Search Button in Hero Section -->
+                <form id="hero-search-form" action="results.html" method="GET" class="relative mx-auto max-w-md">
+                    <input
+                        id="hero-search-input"
+                        name="query"
+                        placeholder="Search..."
+                        class="input shadow-lg focus:border-2 border-gray-300 px-5 py-3 rounded-xl w-full transition-all outline-none"
+                        type="search"
+                    />
+                    <button
+                        type="submit"
+                        class="absolute top-0 right-0 bg-purple-600 text-white px-4 py-3 rounded-r-lg hover:bg-purple-700 transition"
+                    >
+                        🔍
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-gray-100">
+        <div class="container mx-auto text-center">
+            <h3 class="style=font-family: 'Poppins', sans-serif text-5xl text-white mb-9  ">Why Choose InstaSearch? 🤔</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition transform hover:scale-105">
+                    <h4 class="text-xl font-semibold text-purple-700 mb-4">Dynamic Search 🕵️‍♂️</h4>
+                    <p>Type in your query and explore endless possibilities with lightning-fast search results.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition transform hover:scale-105">
+                    <h4 class="text-xl font-semibold text-purple-700 mb-4">High-Quality Images 📸</h4>
+                    <p>All images are fetched directly from Unsplash, ensuring top-notch quality.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition transform hover:scale-105">
+                    <h4 class="text-xl font-semibold text-purple-700 mb-4">Responsive Design 📱</h4>
+                    <p>Enjoy a seamless experience on any device, from mobile phones to desktops.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition transform hover:scale-105">
+                    <h4 class="text-xl font-semibold text-purple-700 mb-4">Endless Inspiration 🌈</h4>
+                    <p>Find images that inspire creativity and help bring your ideas to life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Random Images Section -->
+    <section class="py-12">
+        <div class="container mx-auto text-center">
+            <h3 class="text-3xl font-bold text-black mb-8">Explore Random Images 🌍</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-8 random-images">
+                <img src="https://images.unsplash.com/photo-1530103043960-ef38714abb15?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YWVzdGhldGljfGVufDB8fDB8fHww" alt="Random 1" class="rounded shadow-lg hover:scale-105 transition transform object-cover w-full h-64">
+                <img src="https://c4.wallpaperflare.com/wallpaper/24/349/199/running-siberian-tiger-wallpaper-preview.jpg" alt="Random 2" class="rounded shadow-lg hover:scale-105 transition transform object-cover w-full h-64">
+                <img src="https://c1.wallpaperflare.com/preview/843/461/88/coding-code-programming-screen.jpg" alt="Random 3" class="rounded shadow-lg hover:scale-105 transition transform object-cover w-full h-64">
+                <img src="https://wallpapers.com/images/featured/4k-space-9w27dqmc4nrs3xwd.jpg" alt="Random 4" class="rounded shadow-lg hover:scale-105 transition transform object-cover w-full h-64">
+                <img src="https://c4.wallpaperflare.com/wallpaper/840/954/346/dark-night-rain-car-wallpaper-preview.jpg" alt="Random 5" class="rounded shadow-lg hover:scale-105 transition transform object-cover w-full">
+                <img src="https://c4.wallpaperflare.com/wallpaper/586/620/26/cyberpunk-city-future-tokyo-artur-sadlos-future-tokyo-hd-wallpaper-preview.jpg" alt="Random 6" class="rounded shadow-lg hover:scale-105 transition transform object-cover w-full h-64">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="py-6 bg-purple-600 text-white">
+        <div class="container mx-auto text-center">
+            <p class="style=font-family: 'Poppins', sans-serif text-sm">&copy; 2025 InstaSearch. All rights reserved.</p>
+            <p class="style=font-family: 'Poppins', sans-serif text-sm">Made with ❤️ for image lovers worldwide.</p>
+        </div>
+    </footer>
+    <script>
+        // Focus the hero search input when the page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            const heroSearchInput = document.getElementById('hero-search-input');
+            if (heroSearchInput) {
+                heroSearchInput.focus();
+            }
+        });
+    </script>
+</body>
+</html>
