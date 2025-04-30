@@ -16,11 +16,21 @@ const searchInput = document.getElementById('navbar-search-input');
 const loadingIndicator = document.getElementById('loading-indicator');
 const errorMessage = document.getElementById('error-message');
 
+// Filter elements
+const orientationFilter = document.getElementById('orientation-filter');
+const sortByFilter = document.getElementById('sort-by-filter');
+const colorFilter = document.getElementById('color-filter');
+
 // State
 let currentPage = 1;
 let currentQuery = '';
 let totalResults = 0;
 let isLoading = false;
+let filters = {
+    orientation: '',
+    color: '',
+    orderBy: 'relevant'
+};
 
 // Parse URL parameters to get the search query
 function getSearchQueryFromURL() {
@@ -83,7 +93,23 @@ async function fetchImages(query, page = 1) {
     hideError();
     
     try {
-        const response = await fetch(`${BASE_URL}?client_id=${API_KEY}&query=${query}&page=${page}&per_page=12`);
+        // Build URL with filters
+        let url = `${BASE_URL}?client_id=${API_KEY}&query=${query}&page=${page}&per_page=12`;
+        
+        // Add orientation filter if selected
+        if (filters.orientation) {
+            url += `&orientation=${filters.orientation}`;
+        }
+        
+        // Add color filter if selected
+        if (filters.color) {
+            url += `&color=${filters.color}`;
+        }
+        
+        // Add order by filter
+        url += `&order_by=${filters.orderBy}`;
+        
+        const response = await fetch(url);
         
         if (!response.ok) {
             throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
@@ -279,6 +305,41 @@ if (searchForm) {
             e.preventDefault();
         }
     });
+}
+
+// Handle downloading images
+async function downloadImage(url, filename) {
+    try {
+        showLoading();
+        
+        // Create a temporary link element
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        
+        // Append to the body, click it, and remove it
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        
+        hideLoading();
+    } catch (error) {
+        console.error('Error downloading image:', error);
+        hideLoading();
+        
+        // Show error message
+        if (errorMessage) {
+            errorMessage.textContent = 'Error downloading image. Please try again.';
+            errorMessage.classList.remove('hidden');
+            
+            // Hide error message after 3 seconds
+            setTimeout(() => {
+                errorMessage.classList.add('hidden');
+            }, 3000);
+        }
+    }
 }
 
 // Initialize when DOM content is loaded
