@@ -15,11 +15,11 @@ const searchForm = document.getElementById('navbar-search-form');
 const searchInput = document.getElementById('navbar-search-input');
 const loadingIndicator = document.getElementById('loading-indicator');
 const errorMessage = document.getElementById('error-message');
-
-// Filter elements
-const orientationFilter = document.getElementById('orientation-filter');
-const sortByFilter = document.getElementById('sort-by-filter');
-const colorFilter = document.getElementById('color-filter');
+const filtersSidebar = document.getElementById('filters-sidebar');
+const mobileFiltersToggle = document.getElementById('mobile-filters-toggle');
+const mobileSidebarToggle = document.getElementById('mobile-filter-toggle');
+const closeFiltersBtn = document.getElementById('close-filters');
+const filterOverlay = document.getElementById('filter-overlay');
 
 // State
 let currentPage = 1;
