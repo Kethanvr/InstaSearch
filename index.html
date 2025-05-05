@@ -225,68 +225,36 @@
     <section class="hero-background relative pt-24">
         <div class="absolute inset-0 bg-gradient-to-r from-violet-500/30 to-indigo-500/30 dark:from-violet-900/50 dark:to-indigo-900/50 backdrop-blur-sm"></div>
         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1682686581854-5e71f58e7e3f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center mix-blend-overlay opacity-30"></div>
-        
-        <div class="container mx-auto px-4 py-24 md:py-32 relative z-10">
-            <div class="max-w-3xl mx-auto text-center">
+        <div class="container mx-auto px-4 py-20 md:py-32 relative z-10">
+            <div class="max-w-3xl mx-auto text-center flex flex-col items-center">
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white animate-fade-in">
                     Discover <span class="text-primary-600 dark:text-primary-400">Beautiful</span> Images Instantly
                 </h1>
                 <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 animate-fade-in" style="animation-delay: 0.2s;">
                     Find the perfect images for your next creative project from our collection of millions of high-quality, royalty-free photos.
                 </p>
-                
-                <!-- Hero Search Form -->
-                <div class="max-w-2xl mx-auto animate-fade-in" style="animation-delay: 0.4s;">
-                    <form id="hero-search-form" action="results.html" method="GET" class="relative">
-                        <input 
-                            id="hero-search-input"
-                            name="query" 
-                            type="search" 
-                            placeholder="Search for amazing images..."
-                            class="w-full py-4 px-6 pl-14 rounded-full text-gray-700 dark:text-white bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-300 dark:border-gray-700 shadow-xl focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-500/50 focus:border-primary-500 dark:focus:border-primary-500 outline-none transition duration-300"
-                        />
-                        <span class="absolute left-5 top-1/2 -translate-y-1/2">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-500 dark:text-gray-400">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                            </svg>
-                        </span>
-                        <button 
-                            type="submit"
-                            class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-full transition duration-300 shadow-lg hover:shadow-primary-500/50 btn-ripple"
-                        >
-                            Search
-                        </button>
-                    </form>
-                </div>
-                </h1>
-                
-                <p class="text-lg md:text-xl mb-8 text-gray-700 dark:text-gray-300 animate-fade-in" style="animation-delay: 0.2s;">
-                    Explore millions of high-quality, free images to inspire your next creative project
-                </p>
-                  <!-- Hero Search Form -->
-                <div class="max-w-2xl mx-auto animate-fade-in" style="animation-delay: 0.4s;">
-                    <form id="hero-search-form" action="results.html" method="GET" class="relative">
-                        <input 
-                            id="hero-search-input"
-                            name="query" 
-                            type="search" 
-                            placeholder="Search for amazing images..."
-                            class="w-full py-4 px-6 pl-14 rounded-full text-gray-700 dark:text-white bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-300 dark:border-gray-700 shadow-xl focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-500/50 focus:border-primary-500 dark:focus:border-primary-500 outline-none transition duration-300"
-                        />
-                        <span class="absolute left-5 top-1/2 -translate-y-1/2">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-500 dark:text-gray-400">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                            </svg>
-                        </span>
-                        <button 
-                            type="submit"
-                            class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-full transition duration-300 shadow-lg hover:shadow-primary-500/50 btn-ripple"
-                        >
-                            Search
-                        </button>
-                    </form>
-                </div>
-                
+                <!-- Hero Search Form (Single, Clean, Responsive) -->
+                <form id="hero-search-form" action="results.html" method="GET" class="relative w-full max-w-2xl animate-fade-in" style="animation-delay: 0.4s;">
+                    <input 
+                        id="hero-search-input"
+                        name="query" 
+                        type="search" 
+                        placeholder="Search for amazing images..."
+                        class="w-full py-4 px-6 pl-14 rounded-full text-gray-700 dark:text-white bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-300 dark:border-gray-700 shadow-xl focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-500/50 focus:border-primary-500 dark:focus:border-primary-500 outline-none transition duration-300"
+                        autocomplete="off"
+                    />
+                    <span class="absolute left-5 top-1/2 -translate-y-1/2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                    </span>
+                    <button 
+                        type="submit"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-full transition duration-300 shadow-lg hover:shadow-primary-500/50 btn-ripple"
+                    >
+                        Search
+                    </button>
+                </form>
                 <!-- Popular Searches -->
                 <div class="flex flex-wrap justify-center gap-2 mt-8 animate-fade-in" style="animation-delay: 0.6s;">
                     <span class="text-sm text-gray-600 dark:text-gray-400 font-medium mr-2 mt-2">Popular:</span>
@@ -297,23 +265,21 @@
                     <a href="results.html?query=technology" class="px-3 py-1 bg-white/80 dark:bg-gray-800/80 text-gray-700 dark:text-gray-300 rounded-full text-sm hover:bg-primary-50 dark:hover:bg-gray-700 hover:text-primary-600 dark:hover:text-primary-400 transition duration-300 backdrop-blur-sm border border-gray-200 dark:border-gray-700">Technology</a>
                 </div>
             </div>
-            
             <!-- Hero Stats -->
             <div class="flex flex-wrap justify-center gap-8 md:gap-16 lg:gap-24 mt-16 animate-fade-in" style="animation-delay: 0.8s;">
-                <div class="text-center">
+                <div class="text-center min-w-[120px]">
                     <h3 class="text-3xl md:text-4xl font-bold text-primary-600 dark:text-primary-400">10M+</h3>
                     <p class="text-gray-700 dark:text-gray-300 font-medium mt-1">Images</p>
                 </div>
-                <div class="text-center">
+                <div class="text-center min-w-[120px]">
                     <h3 class="text-3xl md:text-4xl font-bold text-primary-600 dark:text-primary-400">100K+</h3>
                     <p class="text-gray-700 dark:text-gray-300 font-medium mt-1">Daily Searches</p>
                 </div>
-                <div class="text-center">
+                <div class="text-center min-w-[120px]">
                     <h3 class="text-3xl md:text-4xl font-bold text-primary-600 dark:text-primary-400">50K+</h3>
                     <p class="text-gray-700 dark:text-gray-300 font-medium mt-1">Happy Users</p>
                 </div>
             </div>
-            
             <!-- Scroll Down Indicator -->
             <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-slow hidden md:block">
                 <a href="#features" class="flex flex-col items-center text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
