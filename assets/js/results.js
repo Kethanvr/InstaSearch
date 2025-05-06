@@ -569,3 +569,78 @@ const ResultsModule = (function() {
 document.addEventListener('DOMContentLoaded', function() {
     ResultsModule.init();
 });
+
+/**
+ * Mobile Navigation Enhancement for Results Page
+ */
+(function() {
+    // Get DOM elements
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileSearchForm = mobileMenu?.querySelector('form');
+    const mobileFilterToggle = document.getElementById('mobile-filter-toggle');
+    const filtersSidebar = document.getElementById('filters-sidebar');
+    const filterOverlay = document.getElementById('filter-overlay');
+    const closeFiltersBtn = document.getElementById('close-filters');
+    
+    // Handle mobile menu toggle
+    if (mobileMenuButton && mobileMenu) {
+        // Improved mobile menu toggle with animation
+        mobileMenuButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+            
+            // Handle clicks outside the menu to close it
+            if (!mobileMenu.classList.contains('hidden')) {
+                document.addEventListener('click', closeMenuOnClickOutside);
+            } else {
+                document.removeEventListener('click', closeMenuOnClickOutside);
+            }
+        });
+        
+        // Close mobile menu when clicking outside
+        function closeMenuOnClickOutside(e) {
+            if (!mobileMenu.contains(e.target) && e.target !== mobileMenuButton) {
+                mobileMenu.classList.add('hidden');
+                document.removeEventListener('click', closeMenuOnClickOutside);
+            }
+        }
+        
+        // Close mobile menu when form is submitted
+        if (mobileSearchForm) {
+            mobileSearchForm.addEventListener('submit', function() {
+                mobileMenu.classList.add('hidden');
+            });
+        }
+        
+        // Close mobile menu when window is resized to desktop size
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768 && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    }
+    
+    // Improve filter sidebar toggle for mobile
+    if (mobileFilterToggle && filtersSidebar && filterOverlay) {
+        mobileFilterToggle.addEventListener('click', function() {
+            filtersSidebar.classList.add('open');
+            filterOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when filter is open
+        });
+        
+        // Close filters when clicking the close button
+        if (closeFiltersBtn) {
+            closeFiltersBtn.addEventListener('click', closeFilters);
+        }
+        
+        // Close filters when clicking the overlay
+        filterOverlay.addEventListener('click', closeFilters);
+        
+        function closeFilters() {
+            filtersSidebar.classList.remove('open');
+            filterOverlay.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+    }
+})();
