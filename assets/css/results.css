@@ -1,5 +1,26 @@
 /* Mobile-specific styles for results page */
 
+/* Mobile menu styles */
+#mobile-menu {
+    position: absolute;
+    width: 100%;
+    z-index: 30;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#mobile-menu.hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+#mobile-menu:not(.hidden) {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* Image card styles */
 .image-card {
     position: relative;
@@ -90,6 +111,89 @@
         top: 0.75rem;
         right: 0.75rem;
         z-index: 1;
+    }
+    
+    /* Fix for mobile header */
+    header {
+        height: auto;
+    }
+    
+    /* Make mobile menu full width with proper padding */
+    #mobile-menu {
+        left: 0;
+        right: 0;
+        padding: 1rem;
+    }
+    
+    /* Add some breathing room between mobile menu buttons */
+    #mobile-menu-button, 
+    #mobile-filter-toggle {
+        margin-left: 0.5rem;
+    }
+    
+    /* Improve the tap targets for mobile */
+    #mobile-menu a,
+    #mobile-menu button {
+        padding: 0.75rem 0;
+        display: block;
+        width: 100%;
+    }
+    
+    /* Ensure the buttons in mobile menu have proper touch targets */
+    .grid.grid-cols-2 button {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Fix for header content alignment */
+    header .container {
+        padding: 0.5rem 1rem;
+    }
+    
+    /* Ensure the mobile menu has enough z-index to appear on top */
+    #mobile-menu {
+        z-index: 50;
+    }
+    
+    /* Ensure the search bar in mobile menu is properly styled */
+    #mobile-menu .relative input {
+        height: 40px;
+        width: 100%;
+    }
+    
+    /* Add a subtle animation for mobile menu transitions */
+    #mobile-menu {
+        animation: slide-down 0.3s ease;
+    }
+    
+    @keyframes slide-down {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Improve the appearance of nav links in mobile menu */
+    #mobile-menu nav a {
+        display: block;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid rgba(209, 213, 219, 0.3);
+    }
+    
+    #mobile-menu nav a:last-child {
+        border-bottom: none;
+    }
+    
+    /* Fix spacing between buttons and elements in mobile menu */
+    #mobile-menu .space-y-4 > * {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
 }
 
@@ -185,10 +289,9 @@ input[type="radio"][name="color"]:checked + span {
     margin: 0 auto 1rem;
     color: #9ca3af;
 }
-    
-    .image-card .overlay .text-sm {
-        font-size: 0.75rem;
-    }
+
+.image-card .overlay .text-sm {
+    font-size: 0.75rem;
 }
 
 /* Animations */
