@@ -49,6 +49,33 @@ button, input, a {
     transition: all var(--transition-medium) ease;
 }
 
+/* Mobile navigation fixes */
+@media (max-width: 767px) {
+    /* Add padding to the body to account for fixed header */
+    body {
+        padding-top: 60px;
+    }
+    
+    /* Mobile menu positioning */
+    #mobile-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        z-index: 40;
+    }
+    
+    /* Fix navigation links overlap */
+    .md\:hidden {
+        z-index: 30;
+    }
+    
+    /* Hide desktop navigation elements on mobile */
+    .md\:flex {
+        display: none !important;
+    }
+}
+
 /*--------------------------------------------------------------
 # Layout & Sections
 --------------------------------------------------------------*/
@@ -80,11 +107,13 @@ button, input, a {
 .feature-card::before {
     content: "";
     position: absolute;
-    inset: 0;
-    border-radius: 0.75rem;
+    inset: 0;    border-radius: 0.75rem;
     padding: 2px;
     background: linear-gradient(45deg, var(--primary-600), var(--secondary-600));
     -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask:
         linear-gradient(#fff 0 0) content-box, 
         linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -323,6 +352,37 @@ button, input, a {
     
     .hero-background {
         min-height: 100vh;
+    }
+}
+
+/* Mobile nav adjustments to prevent overlapping */
+@media (max-width: 767px) {
+    /* Fixed header positioning */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 50;
+    }
+    
+    /* Mobile menu adjustments */
+    #mobile-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        z-index: 40;
+    }
+    
+    /* Add top padding to main content to prevent header overlap */
+    main {
+        padding-top: 60px; /* Adjust based on your header height */
+    }
+    
+    /* Hide desktop navbar explicitly on mobile */
+    .hidden-mobile {
+        display: none !important;
     }
 }
 
