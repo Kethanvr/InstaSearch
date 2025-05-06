@@ -263,8 +263,7 @@ const ResultsModule = (function() {
         // Append image and overlay to container
         imageContainer.appendChild(imgElement);
         imageContainer.appendChild(overlay);
-        
-        // Update button text when window resizes
+          // Update button text when window resizes
         window.addEventListener('resize', () => {
             if (window.innerWidth < 640) {
                 downloadBtn.innerHTML = downloadIcon;
@@ -272,6 +271,16 @@ const ResultsModule = (function() {
             } else {
                 downloadBtn.innerHTML = downloadIcon + 'Download';
                 viewBtn.innerHTML = viewIcon + 'View on Unsplash';
+            }
+        });
+        
+        // Add click event to the entire image card to trigger download
+        imageContainer.addEventListener('click', (e) => {
+            // If the click is not on a button or link, trigger the download button
+            if (!e.target.closest('button') && !e.target.closest('a')) {
+                e.preventDefault();
+                e.stopPropagation();
+                downloadImage(image.urls.full, `${image.slug}.jpg`);
             }
         });
 
