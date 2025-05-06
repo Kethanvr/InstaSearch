@@ -256,10 +256,17 @@ const MobileMenu = {
             });
         }
     },
-    
-    // Toggle mobile menu
+      // Toggle mobile menu
     toggle: function() {
         this.elements.mobileMenu.classList.toggle('hidden');
+        
+        // Add a listener to close menu when clicking on a link
+        const menuLinks = this.elements.mobileMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                this.elements.mobileMenu.classList.add('hidden');
+            });
+        });
     }
 };
 
