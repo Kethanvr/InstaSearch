@@ -38,23 +38,33 @@
 @media (hover: none) {
     .image-card .overlay {
         opacity: 1;
+        background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2), transparent);
     }
 }
 
 /* Filter sidebar mobile improvements */
-.filter-sidebar {
-    transition: transform 0.3s ease;
+#filters-sidebar {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 @media (max-width: 768px) {
-    .filter-sidebar {
+    #filters-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
         transform: translateX(-100%);
-        width: 80%;
-        max-width: 300px;
+        width: 85%;
+        max-width: 320px;
+        z-index: 40;
+        overflow-y: auto;
+        box-shadow: none;
+        padding-top: 1rem;
     }
     
-    .filter-sidebar.open {
+    #filters-sidebar.open {
         transform: translateX(0);
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
     }
     
     /* Add overlay when filter is open */
@@ -67,14 +77,23 @@
         bottom: 0;
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 30;
+        backdrop-filter: blur(2px);
     }
     
     #filter-overlay:not(.hidden) {
         display: block;
     }
+    
+    /* Make sure close button is visible */
+    #close-filters {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        z-index: 1;
+    }
 }
 
-/* Loading spinner animation */
+/* Loading animation improvements */
 .loading-spinner {
     width: 40px;
     height: 40px;
@@ -82,6 +101,24 @@
     border-radius: 50%;
     border-top-color: #8b5cf6;
     animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Loading skeletons */
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .5;
+    }
 }
 
 /* Fix for mobile gallery layout */
@@ -98,6 +135,56 @@
     .image-card .overlay {
         padding: 0.5rem;
     }
+    
+    .load-more-btn {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Improve color selection in filters */
+input[type="radio"][name="color"] + span {
+    transition: border-color 0.2s ease;
+}
+
+input[type="radio"][name="color"]:checked + span {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.5);
+}
+
+/* Network error state */
+.network-error {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    background-color: #fee2e2;
+    border: 1px solid #ef4444;
+    margin: 1rem 0;
+}
+
+.network-error.dark {
+    background-color: rgba(239, 68, 68, 0.2);
+}
+
+.network-error svg {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto 1rem;
+    color: #ef4444;
+}
+
+/* No results found improvements */
+.no-results {
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.no-results svg {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto 1rem;
+    color: #9ca3af;
+}
     
     .image-card .overlay .text-sm {
         font-size: 0.75rem;
