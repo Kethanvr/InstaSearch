@@ -113,12 +113,16 @@ const ResultsModule = (function() {
             elements.searchQuery.textContent = query;
         }
     }
-    
-    /**
+      /**
      * Fetch images from Unsplash API
      */
     async function fetchImages(query, page = 1) {
         if (!query) return null;
+        
+        // Check if user is offline
+        if (handleOfflineState()) {
+            return null;
+        }
         
         showLoading();
         hideError();
@@ -197,20 +201,20 @@ const ResultsModule = (function() {
 
         // Overlay with image info
         const overlay = document.createElement('div');
-        overlay.className = 'absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4';
+        overlay.className = 'absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3 sm:p-4';
 
         // Photographer info
         const photographerInfo = document.createElement('div');
-        photographerInfo.className = 'flex items-center mb-3';
+        photographerInfo.className = 'flex items-center mb-2 sm:mb-3';
         
         const photographerAvatar = document.createElement('img');
         photographerAvatar.src = image.user.profile_image.small;
         photographerAvatar.alt = image.user.name;
-        photographerAvatar.className = 'w-8 h-8 rounded-full mr-2 border border-white';
+        photographerAvatar.className = 'w-6 h-6 sm:w-8 sm:h-8 rounded-full mr-2 border border-white';
         
         const photographerName = document.createElement('span');
         photographerName.textContent = image.user.name;
-        photographerName.className = 'text-white text-sm font-medium';
+        photographerName.className = 'text-white text-xs sm:text-sm font-medium truncate max-w-[100px] sm:max-w-full';
         
         photographerInfo.appendChild(photographerAvatar);
         photographerInfo.appendChild(photographerName);
@@ -220,13 +224,14 @@ const ResultsModule = (function() {
         actionButtons.className = 'flex space-x-2 mt-2';
         
         const downloadBtn = document.createElement('button');
-        downloadBtn.className = 'bg-white/90 hover:bg-white text-gray-900 rounded-lg px-3 py-1.5 text-xs font-medium flex items-center transition-colors btn-ripple';
-        downloadBtn.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-            </svg>
-            Download
-        `;
+        downloadBtn.className = 'bg-white/90 hover:bg-white text-gray-900 rounded-lg px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium flex items-center transition-colors btn-ripple';
+        
+        const downloadIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+        </svg>`;
+        
+        // Show text on larger screens, only icon on mobile
+        downloadBtn.innerHTML = window.innerWidth < 640 ? downloadIcon : downloadIcon + 'Download';
         
         // Add click event to download the image
         downloadBtn.addEventListener('click', (e) => {
@@ -238,13 +243,14 @@ const ResultsModule = (function() {
         viewBtn.href = image.links.html;
         viewBtn.target = '_blank';
         viewBtn.rel = 'noopener noreferrer';
-        viewBtn.className = 'bg-primary-600/90 hover:bg-primary-600 text-white rounded-lg px-3 py-1.5 text-xs font-medium flex items-center transition-colors';
-        viewBtn.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-            </svg>
-            View on Unsplash
-        `;
+        viewBtn.className = 'bg-primary-600/90 hover:bg-primary-600 text-white rounded-lg px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium flex items-center transition-colors';
+        
+        const viewIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+        </svg>`;
+        
+        // Show text on larger screens, only icon on mobile
+        viewBtn.innerHTML = window.innerWidth < 640 ? viewIcon : viewIcon + 'View';
         
         // Append buttons to action container
         actionButtons.appendChild(downloadBtn);
@@ -257,6 +263,17 @@ const ResultsModule = (function() {
         // Append image and overlay to container
         imageContainer.appendChild(imgElement);
         imageContainer.appendChild(overlay);
+        
+        // Update button text when window resizes
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 640) {
+                downloadBtn.innerHTML = downloadIcon;
+                viewBtn.innerHTML = viewIcon;
+            } else {
+                downloadBtn.innerHTML = downloadIcon + 'Download';
+                viewBtn.innerHTML = viewIcon + 'View on Unsplash';
+            }
+        });
 
         return imageContainer;
     }
@@ -269,6 +286,12 @@ const ResultsModule = (function() {
         
         state.currentQuery = query;
         
+        if (!append) {
+            showLoading();
+            // Show loading skeleton while fetching for better UX
+            elements.gallery.innerHTML = generateLoadingSkeletons(8);
+        }
+        
         const images = await fetchImages(query, page);
         
         if (!images || images.length === 0) {
@@ -277,7 +300,7 @@ const ResultsModule = (function() {
                     <div class="col-span-full py-16 text-center">
                         <div class="mx-auto w-24 h-24 mb-6">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-full h-full text-gray-400 dark:text-gray-600">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7
                             </svg>
                         </div>
                         <h3 class="text-xl font-semibold text-gray-700 dark:text-gray-300">No results found</h3>
@@ -312,23 +335,77 @@ const ResultsModule = (function() {
     }
     
     /**
-     * Load more results
+     * Generate loading skeleton elements
      */
-    function loadMoreResults() {
-        state.currentPage++;
-        displaySearchResults(state.currentQuery, state.currentPage, true);
+    function generateLoadingSkeletons(count) {
+        let skeletons = '';
+        for (let i = 0; i < count; i++) {
+            skeletons += `
+                <div class="animate-pulse rounded-xl overflow-hidden bg-gray-200 dark:bg-gray-700" style="height: 250px;">
+                    <div class="w-full h-full"></div>
+                </div>
+            `;
+        }
+        return skeletons;
+    }
+    
+    /**
+     * Apply filters and reload search results
+     */
+    function applyFilters() {
+        state.currentPage = 1;
+        displaySearchResults(state.currentQuery, state.currentPage);
+    }
+    
+    /**
+     * Clear all filters
+     */
+    function clearFilters() {
+        // Reset orientation
+        elements.orientationFilters.forEach(radio => {
+            if (radio.value === "") {
+                radio.checked = true;
+            } else {
+                radio.checked = false;
+            }
+        });
+        
+        // Reset color
+        elements.colorFilters.forEach(radio => {
+            if (radio.value === "") {
+                radio.checked = true;
+            } else {
+                radio.checked = false;
+            }
+        });
+        
+        // Reset sort
+        elements.sortOptions.forEach(radio => {
+            if (radio.value === "relevant") {
+                radio.checked = true;
+            } else {
+                radio.checked = false;
+            }
+        });
+        
+        // Reset state
+        state.filters = {
+            orientation: '',
+            color: '',
+            orderBy: 'relevant'
+        };
+        
+        // Apply cleared filters
+        applyFilters();
     }
     
     /**
      * Toggle filters sidebar
      */
     function toggleFiltersSidebar() {
-        if (elements.filtersSidebar) {
-            elements.filtersSidebar.classList.toggle('open');
-            
-            if (elements.filterOverlay) {
-                elements.filterOverlay.classList.toggle('hidden');
-            }
+        elements.filtersSidebar.classList.toggle('open');
+        if (elements.filterOverlay) {
+            elements.filterOverlay.classList.toggle('hidden');
         }
     }
     
@@ -336,55 +413,10 @@ const ResultsModule = (function() {
      * Close filters sidebar
      */
     function closeFiltersSidebar() {
-        if (elements.filtersSidebar) {
-            elements.filtersSidebar.classList.remove('open');
-            
-            if (elements.filterOverlay) {
-                elements.filterOverlay.classList.add('hidden');
-            }
+        elements.filtersSidebar.classList.remove('open');
+        if (elements.filterOverlay) {
+            elements.filterOverlay.classList.add('hidden');
         }
-    }
-    
-    /**
-     * Apply filters
-     */
-    function applyFilters() {
-        // Reset page
-        state.currentPage = 1;
-        
-        // Apply filters
-        displaySearchResults(state.currentQuery, state.currentPage);
-        
-        // Close sidebar on mobile
-        if (window.innerWidth < 768) {
-            closeFiltersSidebar();
-        }
-    }
-    
-    /**
-     * Clear all filters
-     */
-    function clearFilters() {
-        // Reset filters
-        state.filters.orientation = '';
-        state.filters.color = '';
-        state.filters.orderBy = 'relevant';
-        
-        // Reset radio buttons
-        elements.orientationFilters.forEach(radio => {
-            radio.checked = radio.value === '';
-        });
-        
-        elements.colorFilters.forEach(radio => {
-            radio.checked = radio.value === '';
-        });
-        
-        elements.sortOptions.forEach(radio => {
-            radio.checked = radio.value === 'relevant';
-        });
-        
-        // Apply filters
-        applyFilters();
     }
     
     /**
@@ -462,6 +494,49 @@ const ResultsModule = (function() {
         
         // Initialize filters
         initFilters();
+    }
+    
+    /**
+     * Handle network connectivity issues
+     */
+    function handleOfflineState() {
+        if (!navigator.onLine) {
+            // User is offline
+            if (elements.gallery) {
+                elements.gallery.innerHTML = `
+                    <div class="col-span-full">
+                        <div class="network-error ${document.documentElement.classList.contains('dark') ? 'dark' : ''}">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                            </svg>
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200">You're offline</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">
+                                Please check your internet connection and try again.
+                            </p>
+                            <button id="retry-connection" class="mt-4 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-md transition-colors">
+                                Retry
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                // Add event listener to retry button
+                const retryBtn = document.getElementById('retry-connection');
+                if (retryBtn) {
+                    retryBtn.addEventListener('click', () => {
+                        if (navigator.onLine) {
+                            // User is back online, reload results
+                            displaySearchResults(state.currentQuery, 1);
+                        } else {
+                            // Still offline
+                            alert('Still offline. Please check your internet connection.');
+                        }
+                    });
+                }
+            }
+            return true;
+        }
+        return false;
     }
     
     // Return public methods and properties
