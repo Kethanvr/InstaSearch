@@ -587,7 +587,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileSearchForm = mobileMenu?.querySelector('form');
-    const mobileFilterToggle = document.getElementById('mobile-filter-toggle');
+    const mobileFilterToggle = document.getElementById('mobile-filters-toggle');
     const filtersSidebar = document.getElementById('filters-sidebar');
     const filterOverlay = document.getElementById('filter-overlay');
     const closeFiltersBtn = document.getElementById('close-filters');
@@ -644,7 +644,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Close filters when clicking the overlay
-        filterOverlay.addEventListener('click', closeFilters);
+        if (filterOverlay) {
+            filterOverlay.addEventListener('click', closeFilters);
+        }
         
         function closeFilters() {
             filtersSidebar.classList.remove('open');
@@ -671,7 +673,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 // Close mobile menu after toggling dark mode
-                const mobileMenu = document.getElementById('mobile-menu');
                 if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
                     mobileMenu.classList.add('hidden');
                 }
