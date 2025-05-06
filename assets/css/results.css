@@ -28,6 +28,7 @@
     overflow: hidden;
     height: 100%;
     min-height: 200px;
+    cursor: pointer;
 }
 
 .image-card img {
@@ -41,19 +42,46 @@
     transform: scale(1.05);
 }
 
+/* Overlay styling with hover effect to only show download button */
 .image-card .overlay {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1rem;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
 .image-card:hover .overlay {
     opacity: 1;
+}
+
+/* Hide everything except the download button on hover */
+.image-card .overlay .flex.items-center,
+.image-card .overlay a {
+    display: none !important;
+}
+
+.image-card .overlay .flex.space-x-2 {
+    margin-top: 0 !important;
+}
+
+/* Make download button more prominent */
+.image-card .overlay button {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.875rem !important;
+    background: white !important;
+    color: black !important;
+    border-radius: 0.5rem !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+    transition: transform 0.2s ease !important;
+}
+
+.image-card .overlay button:hover {
+    transform: scale(1.05) !important;
 }
 
 /* Touch devices should show overlay without hover */
