@@ -643,4 +643,33 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = ''; // Restore scrolling
         }
     }
+    
+    /**
+     * Initialize dark mode for mobile
+     */
+    function initMobileDarkMode() {
+        const mobileDarkModeToggle = document.getElementById('mobile-dark-mode-toggle');
+        
+        if (mobileDarkModeToggle) {
+            mobileDarkModeToggle.addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                
+                // Save preference to localStorage
+                if (document.documentElement.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+                
+                // Close mobile menu after toggling dark mode
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+    }
+    
+    // Initialize dark mode for mobile
+    initMobileDarkMode();
 })();
