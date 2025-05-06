@@ -63,80 +63,18 @@
                 }
             }
         }
-    </script>
-      <!-- Custom CSS -->
+    </script>      <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/results.css">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/48/camera.png">
-    
     <!-- Ads -->
     <script async src="https://pagead.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6985167612880362" crossorigin="anonymous"></script>
-    
-    <!-- Meta Tags -->
+      <!-- Meta Tags -->
     <meta name="description" content="Search results for beautiful, high-quality images on InstaSearch">
     <meta name="keywords" content="images, photos, search results, free images, high quality, photography">
     <meta name="author" content="InstaSearch">
-    
-    <!-- Additional Result Page Styles -->
-    <style>
-        .image-card {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .image-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .image-card:hover img {
-            transform: scale(1.05);
-        }
-        
-        .image-card .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .image-card:hover .overlay {
-            opacity: 1;
-        }
-        
-        .filter-sidebar {
-            transition: transform 0.3s ease;
-        }
-        
-        @media (max-width: 768px) {
-            .filter-sidebar.hidden {
-                transform: translateX(-100%);
-            }
-        }
-        
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.4);
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            pointer-events: none;
-        }
-        
-        @keyframes ripple {
-            to {
-                transform: scale(2.5);
-                opacity: 0;
-            }
-        }
-    </style>
 </head>
 <body class="bg-gray-50 font-sans transition-colors duration-300 dark:bg-gray-900 min-h-screen">
     <!-- Header Section -->
@@ -292,12 +230,13 @@
                 <p class="text-gray-600 dark:text-gray-400">
                     <span id="search-results-count">0</span> images found
                 </p>
-            </div>
-
-            <!-- Main Grid Layout -->
-            <div class="flex flex-col md:flex-row gap-8">                <!-- Filters Sidebar (Hidden on Mobile by Default) -->
-                <div id="filters-sidebar" class="filter-sidebar transform transition-transform duration-300 fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-gray-800 p-4 shadow-lg md:shadow-none md:static md:transform-none md:z-0 md:block md:w-64 flex-shrink-0 md:rounded-lg">
-                    <div class="flex justify-between items-center md:hidden mb-4">
+            </div>            <!-- Main Grid Layout -->
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Filter Overlay (for mobile) -->
+                <div id="filter-overlay" class="hidden md:hidden"></div>
+                
+                <!-- Filters Sidebar (Hidden on Mobile by Default) -->                <div id="filters-sidebar" class="filter-sidebar transform transition-transform duration-300 fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-gray-800 p-4 shadow-lg md:shadow-none md:static md:transform-none md:z-0 md:block md:w-64 flex-shrink-0 md:rounded-lg overflow-y-auto">
+                    <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-3 mb-4 md:hidden">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Filters</h3>
                         <button id="close-filters" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -307,101 +246,119 @@
                     </div>
 
                     <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white hidden md:block">Filters</h3>
-                    
-                    <!-- Orientation Filter -->
+                      <!-- Orientation Filter -->
                     <div class="mb-6">
                         <h4 class="text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Orientation</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <button class="px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium transition-colors text-gray-800 dark:text-gray-200">
-                                All
-                            </button>
-                            <button class="px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium transition-colors text-gray-800 dark:text-gray-200">
-                                Landscape
-                            </button>
-                            <button class="px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium transition-colors text-gray-800 dark:text-gray-200">
-                                Portrait
-                            </button>
-                            <button class="px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium transition-colors text-gray-800 dark:text-gray-200">
-                                Square
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Color Filter -->
-                    <div class="mb-6">
-                        <h4 class="text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Color</h4>
-                        <div class="grid grid-cols-5 gap-2">
-                            <button class="w-6 h-6 rounded-full bg-black border border-gray-300 dark:border-gray-600"></button>
-                            <button class="w-6 h-6 rounded-full bg-white border border-gray-300 dark:border-gray-600"></button>
-                            <button class="w-6 h-6 rounded-full bg-blue-500 border border-gray-300 dark:border-gray-600"></button>
-                            <button class="w-6 h-6 rounded-full bg-green-500 border border-gray-300 dark:border-gray-600"></button>
-                            <button class="w-6 h-6 rounded-full bg-red-500 border border-gray-300 dark:border-gray-600"></button>
-                            <button class="w-6 h-6 rounded-full bg-yellow-500 border border-gray-300 dark:border-gray-600"></button>
-                            <button class="w-6 h-6 rounded-full bg-purple-500 border border-gray-300 dark:border-gray-600"></button>
-                            <button class="w-6 h-6 rounded-full bg-pink-500 border border-gray-300 dark:border-gray-600"></button>
-                            <button class="w-6 h-6 rounded-full bg-orange-500 border border-gray-300 dark:border-gray-600"></button>
-                            <button class="w-6 h-6 rounded-full bg-gray-500 border border-gray-300 dark:border-gray-600"></button>
-                        </div>
-                    </div>
-                    
-                    <!-- Size Filter -->
-                    <div class="mb-6">
-                        <h4 class="text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Size</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <button class="px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium transition-colors text-gray-800 dark:text-gray-200">
-                                All
-                            </button>
-                            <button class="px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium transition-colors text-gray-800 dark:text-gray-200">
-                                Large
-                            </button>
-                            <button class="px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium transition-colors text-gray-800 dark:text-gray-200">
-                                Medium
-                            </button>
-                            <button class="px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium transition-colors text-gray-800 dark:text-gray-200">
-                                Small
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- License Filter -->
-                    <div class="mb-6">
-                        <h4 class="text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">License</h4>
                         <div class="space-y-2">
                             <label class="flex items-center">
-                                <input type="checkbox" class="rounded text-primary-600 focus:ring-primary-500 border-gray-300 dark:border-gray-700 dark:bg-gray-700">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Free to use</span>
+                                <input type="radio" name="orientation" value="" checked class="text-primary-600 focus:ring-primary-500 border-gray-300 dark:border-gray-700">
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">All</span>
                             </label>
                             <label class="flex items-center">
-                                <input type="checkbox" class="rounded text-primary-600 focus:ring-primary-500 border-gray-300 dark:border-gray-700 dark:bg-gray-700">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Commercial use</span>
+                                <input type="radio" name="orientation" value="landscape" class="text-primary-600 focus:ring-primary-500 border-gray-300 dark:border-gray-700">
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Landscape</span>
                             </label>
                             <label class="flex items-center">
-                                <input type="checkbox" class="rounded text-primary-600 focus:ring-primary-500 border-gray-300 dark:border-gray-700 dark:bg-gray-700">
-                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Modification allowed</span>
+                                <input type="radio" name="orientation" value="portrait" class="text-primary-600 focus:ring-primary-500 border-gray-300 dark:border-gray-700">
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Portrait</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="orientation" value="squarish" class="text-primary-600 focus:ring-primary-500 border-gray-300 dark:border-gray-700">
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Square</span>
                             </label>
                         </div>
                     </div>
-                    
-                    <!-- Reset Filters Button -->
-                    <button class="w-full py-2 px-4 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-md text-sm font-medium transition-colors">
+                      <!-- Color Filter -->
+                    <div class="mb-6">
+                        <h4 class="text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Color</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="color" value="" checked class="text-primary-600 focus:ring-primary-500 border-gray-300 dark:border-gray-700">
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Any color</span>
+                            </label>
+                            <div class="grid grid-cols-5 gap-2 mt-2">
+                                <label class="flex items-center justify-center cursor-pointer" title="Black">
+                                    <input type="radio" name="color" value="black" class="sr-only">
+                                    <span class="w-6 h-6 rounded-full bg-black border-2 border-transparent hover:border-primary-500 peer-checked:border-primary-500"></span>
+                                </label>
+                                <label class="flex items-center justify-center cursor-pointer" title="White">
+                                    <input type="radio" name="color" value="white" class="sr-only">
+                                    <span class="w-6 h-6 rounded-full bg-white border-2 border-gray-300 hover:border-primary-500 peer-checked:border-primary-500"></span>
+                                </label>
+                                <label class="flex items-center justify-center cursor-pointer" title="Blue">
+                                    <input type="radio" name="color" value="blue" class="sr-only">
+                                    <span class="w-6 h-6 rounded-full bg-blue-500 border-2 border-transparent hover:border-primary-500 peer-checked:border-primary-500"></span>
+                                </label>
+                                <label class="flex items-center justify-center cursor-pointer" title="Green">
+                                    <input type="radio" name="color" value="green" class="sr-only">
+                                    <span class="w-6 h-6 rounded-full bg-green-500 border-2 border-transparent hover:border-primary-500 peer-checked:border-primary-500"></span>
+                                </label>
+                                <label class="flex items-center justify-center cursor-pointer" title="Red">
+                                    <input type="radio" name="color" value="red" class="sr-only">
+                                    <span class="w-6 h-6 rounded-full bg-red-500 border-2 border-transparent hover:border-primary-500 peer-checked:border-primary-500"></span>
+                                </label>
+                                <label class="flex items-center justify-center cursor-pointer" title="Yellow">
+                                    <input type="radio" name="color" value="yellow" class="sr-only">
+                                    <span class="w-6 h-6 rounded-full bg-yellow-500 border-2 border-transparent hover:border-primary-500 peer-checked:border-primary-500"></span>
+                                </label>
+                                <label class="flex items-center justify-center cursor-pointer" title="Purple">
+                                    <input type="radio" name="color" value="purple" class="sr-only">
+                                    <span class="w-6 h-6 rounded-full bg-purple-500 border-2 border-transparent hover:border-primary-500 peer-checked:border-primary-500"></span>
+                                </label>
+                                <label class="flex items-center justify-center cursor-pointer" title="Orange">
+                                    <input type="radio" name="color" value="orange" class="sr-only">
+                                    <span class="w-6 h-6 rounded-full bg-orange-500 border-2 border-transparent hover:border-primary-500 peer-checked:border-primary-500"></span>
+                                </label>
+                                <label class="flex items-center justify-center cursor-pointer" title="Teal">
+                                    <input type="radio" name="color" value="teal" class="sr-only">
+                                    <span class="w-6 h-6 rounded-full bg-teal-500 border-2 border-transparent hover:border-primary-500 peer-checked:border-primary-500"></span>
+                                </label>
+                                <label class="flex items-center justify-center cursor-pointer" title="Gray">
+                                    <input type="radio" name="color" value="gray" class="sr-only">
+                                    <span class="w-6 h-6 rounded-full bg-gray-500 border-2 border-transparent hover:border-primary-500 peer-checked:border-primary-500"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                      <!-- Sort Options -->
+                    <div class="mb-6">
+                        <h4 class="text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Sort By</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="sort" value="relevant" checked class="text-primary-600 focus:ring-primary-500 border-gray-300 dark:border-gray-700">
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Relevance</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="sort" value="latest" class="text-primary-600 focus:ring-primary-500 border-gray-300 dark:border-gray-700">
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Latest</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="sort" value="popular" class="text-primary-600 focus:ring-primary-500 border-gray-300 dark:border-gray-700">
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Popular</span>
+                            </label>
+                        </div>
+                    </div>
+                      <!-- License Info -->
+                    <div class="mb-6">
+                        <h4 class="text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">License</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">All images on InstaSearch are free to use under the Unsplash License.</p>
+                        <a href="https://unsplash.com/license" target="_blank" class="inline-flex items-center text-xs text-primary-600 hover:text-primary-700 dark:text-primary-400 font-medium">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 mr-1">
+                                <path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h5a.75.75 0 010 1.5h-5z" clip-rule="evenodd" />
+                                <path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 001.06.053L16.5 4.44v2.81a.75.75 0 001.5 0v-4.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 000 1.5h2.553l-9.056 8.194a.75.75 0 00-.053 1.06z" clip-rule="evenodd" />
+                            </svg>
+                            Learn more about the license
+                        </a>
+                    </div>
+                      <!-- Reset Filters Button -->
+                    <button id="clear-filters" class="w-full py-2 px-4 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-md text-sm font-medium transition-colors">
                         Reset Filters
                     </button>
-                </div>
-
-                <!-- Results Content -->
+                </div>                <!-- Results Content -->
                 <div class="flex-grow">
-                    <!-- Sort Options -->
+                    <!-- Results Controls -->
                     <div class="flex flex-wrap items-center justify-between mb-6">
-                        <div class="mb-4 sm:mb-0">
-                            <span class="text-sm text-gray-600 dark:text-gray-400 mr-2">Sort by:</span>
-                            <select class="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 text-sm border border-gray-300 dark:border-gray-700 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-primary-500">
-                                <option>Relevance</option>
-                                <option>Latest</option>
-                                <option>Popular</option>
-                            </select>
-                        </div>
-                        
-                        <div class="flex space-x-2">
+                        <div class="flex items-center">
                             <!-- Mobile Filter Toggle Button -->
                             <button id="mobile-filters-toggle" class="md:hidden px-3 py-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md flex items-center text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1">
@@ -409,7 +366,9 @@
                                 </svg>
                                 Filters
                             </button>
-                            
+                        </div>
+                        
+                        <div class="flex space-x-2">
                             <!-- View Mode Buttons -->
                             <div class="flex border border-gray-300 dark:border-gray-700 rounded-md overflow-hidden">
                                 <button class="px-2 py-1 bg-primary-100 dark:bg-primary-900/30 border-r border-gray-300 dark:border-gray-700 text-primary-600 dark:text-primary-400">
@@ -430,14 +389,12 @@
                     <div id="error-message" class="hidden bg-red-100 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6 dark:bg-red-900/30 dark:border-red-800 dark:text-red-400">
                         Failed to load images. Please try again later.
                     </div>
-                    
-                    <!-- Loading Indicator (Hidden by Default) -->
-                    <div id="loading-indicator" class="hidden flex justify-center items-center py-12">
-                        <div class="loading-spinner"></div>
-                    </div>
-
-                    <!-- Gallery Grid -->
-                    <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                      <!-- Loading Indicator (Hidden by Default) -->
+                    <div id="loading-indicator" class="hidden flex justify-center items-center py-12 flex-col">
+                        <div class="loading-spinner mb-4"></div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Loading images...</p>
+                    </div>                    <!-- Gallery Grid -->
+                    <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
                         <!-- Images will be dynamically inserted here -->
                     </div>
                     
@@ -542,16 +499,27 @@
     </div>    <!-- Custom JS -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/results.js"></script>
-    
-    <!-- Filter Toggle Script -->
+      <!-- Filter Toggle Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const mobileFiltersToggle = document.getElementById('mobile-filters-toggle');
             const mobileSidebarToggle = document.getElementById('mobile-filter-toggle');
             const filtersSidebar = document.getElementById('filters-sidebar');
+            const closeFiltersBtn = document.getElementById('close-filters');
+            const filterOverlay = document.getElementById('filter-overlay');
             
             function toggleFilters() {
-                filtersSidebar.classList.toggle('hidden');
+                filtersSidebar.classList.toggle('open');
+                if (filterOverlay) {
+                    filterOverlay.classList.toggle('hidden');
+                }
+            }
+            
+            function closeFilters() {
+                filtersSidebar.classList.remove('open');
+                if (filterOverlay) {
+                    filterOverlay.classList.add('hidden');
+                }
             }
             
             if (mobileFiltersToggle) {
@@ -560,6 +528,14 @@
             
             if (mobileSidebarToggle) {
                 mobileSidebarToggle.addEventListener('click', toggleFilters);
+            }
+            
+            if (closeFiltersBtn) {
+                closeFiltersBtn.addEventListener('click', closeFilters);
+            }
+            
+            if (filterOverlay) {
+                filterOverlay.addEventListener('click', closeFilters);
             }
         });
     </script>
