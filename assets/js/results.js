@@ -494,6 +494,26 @@ const ResultsModule = (function() {
         
         // Initialize filters
         initFilters();
+        
+        // Initialize network listeners
+        initNetworkListeners();
+    }
+    
+    /**
+     * Initialize online/offline event listeners
+     */
+    function initNetworkListeners() {
+        // Listen for offline events
+        window.addEventListener('offline', () => {
+            handleOfflineState();
+        });
+        
+        // Listen for online events
+        window.addEventListener('online', () => {
+            if (state.currentQuery) {
+                displaySearchResults(state.currentQuery, 1);
+            }
+        });
     }
     
     /**
