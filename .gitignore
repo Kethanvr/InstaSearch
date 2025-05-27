@@ -11,6 +11,7 @@ lerna-debug.log*
 out/
 dist/
 build/
+DEPLOYMENT_GUIDE.md
 
 # Runtime data
 pids
