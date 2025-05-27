@@ -59,7 +59,7 @@ export default function SearchPage() {
         per_page: "24",
         orientation: filters?.orientation === "all" ? "" : filters?.orientation || "",
         color: filters?.color === "all" ? "" : filters?.color || "",
-        order_by: filters?.orderBy || "relevant"
+        order_by: filters?.order_by || "relevant"
       })
 
       // Remove empty parameters
