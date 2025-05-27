@@ -23,6 +23,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://instasearch.kethanvr.me'),
   title: "InstaSearch - Discover Beautiful Images Instantly",
   description: "Search and download stunning, royalty-free images from Unsplash with InstaSearch. Fast, clean, and beautiful image search for creators and developers.",
   keywords: ["unsplash", "image search", "free stock photos", "royalty free images", "high resolution photos", "creative commons"],
