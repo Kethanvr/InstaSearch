@@ -1,10 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { SearchSection } from "@/components/search-section"
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
+import { Skeleton } from "@/components/ui/skeleton"
 
 // Interface for Unsplash image
 interface UnsplashImage {
@@ -29,7 +30,7 @@ interface UnsplashImage {
 const UNSPLASH_ACCESS_KEY = "ggbXfyFRtwZKhpPldtEGvhBQ6OqbVNCa-fkjJYTk1eY"
 const UNSPLASH_API_URL = "https://api.unsplash.com"
 
-export default function SearchPage() {
+function SearchContent() {
   const searchParams = useSearchParams()
   const [images, setImages] = useState<UnsplashImage[]>([])
   const [loading, setLoading] = useState(false)
@@ -111,8 +112,9 @@ export default function SearchPage() {
       alert("Failed to download image. Please try again.")
     }
   }
+
   return (
-    <main className="min-h-screen">
+    <>
       <Navbar showSearch={true} initialQuery={initialQuery} />
       
       {error && (
@@ -133,6 +135,30 @@ export default function SearchPage() {
       />
       
       <Footer />
+    </>
+  )
+}
+
+export default function SearchPage() {
+  return (
+    <main className="min-h-screen">
+      <Suspense fallback={
+        <div className="min-h-screen">
+          <div className="h-16 bg-background border-b">
+            <Skeleton className="h-full w-full" />
+          </div>
+          <div className="p-4">
+            <Skeleton className="h-8 w-48 mb-4" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <Skeleton key={i} className="aspect-square w-full" />
+              ))}
+            </div>
+          </div>
+        </div>
+      }>
+        <SearchContent />
+      </Suspense>
     </main>
   )
 }

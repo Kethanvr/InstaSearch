@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 import { Search, Download, Grid, List } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -27,10 +28,16 @@ interface Image {
   color: string
 }
 
+interface SearchFilters {
+  orientation?: string
+  color?: string
+  category?: string
+}
+
 interface SearchSectionProps {
   images: Image[]
   loading: boolean
-  onSearch: (query: string, filters?: any) => void
+  onSearch: (query: string, filters?: SearchFilters) => void
   onDownload: (imageUrl: string, filename: string) => void
 }
 
@@ -162,12 +169,13 @@ export function SearchSection({ images, loading, onSearch, onDownload }: SearchS
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-              >
-                <Card className="group overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105">
+              >                <Card className="group overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105">
                   <div className="relative">
-                    <img
+                    <Image
                       src={image.urls.regular}
                       alt={image.alt_description || "Unsplash image"}
+                      width={400}
+                      height={400}
                       className={`w-full object-cover transition-transform duration-300 group-hover:scale-110 ${
                         viewMode === "grid" ? "aspect-square" : "aspect-video"
                       }`}
