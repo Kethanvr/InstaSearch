@@ -53,9 +53,8 @@ export function Footer() {
                 <a href="#features" className="hover:text-foreground transition-colors">
                   Features
                 </a>
-              </li>
-              <li>
-                <a href="#about" className="hover:text-foreground transition-colors">
+              </li>              <li>
+                <a href="/contact" className="hover:text-foreground transition-colors">
                   About
                 </a>
               </li>
@@ -92,29 +91,27 @@ export function Footer() {
                 </a>
               </li>
             </ul>
-          </div>
-
-          {/* Legal */}
+          </div>          {/* Legal */}
           <div className="space-y-4">
             <h3 className="font-semibold">Legal</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <a href="/privacy" className="hover:text-foreground transition-colors">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <a href="/terms" className="hover:text-foreground transition-colors">
                   Terms of Service
                 </a>
               </li>
               <li>
-                <a href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                <a href="/license" className="hover:text-foreground transition-colors">
                   Unsplash License
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <a href="/contact" className="hover:text-foreground transition-colors">
                   Contact
                 </a>
               </li>
