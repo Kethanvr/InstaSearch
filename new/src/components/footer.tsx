@@ -1,0 +1,150 @@
+"use client"
+
+import { motion } from "framer-motion"
+import { Heart, Camera, Github, Twitter, Instagram } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+
+export function Footer() {
+  const currentYear = new Date().getFullYear()
+
+  return (
+    <footer className="bg-background border-t">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid md:grid-cols-4 gap-8">
+          {/* Brand */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <Camera className="h-8 w-8 text-primary" />
+              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                InstaSearch
+              </span>
+            </div>
+            <p className="text-muted-foreground">
+              Discover and download beautiful, high-quality images from Unsplash with our modern search interface.
+            </p>
+            <div className="flex gap-2">
+              <Button variant="ghost" size="icon" className="h-8 w-8">
+                <Github className="h-4 w-4" />
+              </Button>
+              <Button variant="ghost" size="icon" className="h-8 w-8">
+                <Twitter className="h-4 w-4" />
+              </Button>
+              <Button variant="ghost" size="icon" className="h-8 w-8">
+                <Instagram className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div className="space-y-4">
+            <h3 className="font-semibold">Quick Links</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#search" className="hover:text-foreground transition-colors">
+                  Search Images
+                </a>
+              </li>
+              <li>
+                <a href="#features" className="hover:text-foreground transition-colors">
+                  Features
+                </a>
+              </li>
+              <li>
+                <a href="#about" className="hover:text-foreground transition-colors">
+                  About
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Categories */}
+          <div className="space-y-4">
+            <h3 className="font-semibold">Popular Categories</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Nature
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Architecture
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Business
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Technology
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Travel
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div className="space-y-4">
+            <h3 className="font-semibold">Legal</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Terms of Service
+                </a>
+              </li>
+              <li>
+                <a href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                  Unsplash License
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <Separator className="my-8" />
+
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span>© {currentYear} InstaSearch. Made with</span>
+            <Heart className="h-4 w-4 text-red-500 fill-current" />
+            <span>using Next.js & Unsplash API</span>
+          </div>
+          
+          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+            <span>Powered by</span>
+            <a 
+              href="https://unsplash.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors font-medium"
+            >
+              Unsplash
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}
