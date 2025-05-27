@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Heart, Camera, Github, Twitter, Instagram } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"

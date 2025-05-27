@@ -43,7 +43,11 @@ export default function SearchPage() {
     }
   }, [initialQuery])
 
-  const handleSearch = async (query: string, filters?: any) => {
+  const handleSearch = async (query: string, filters?: {
+    orientation?: string;
+    color?: string;
+    order_by?: string;
+  }) => {
     if (!query.trim()) return
 
     setLoading(true)
