@@ -2,11 +2,12 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Search, Camera, Sparkles } from "lucide-react"
+import { Search, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 export function Hero() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -68,14 +69,19 @@ export function Hero() {
       </div>
 
       {/* Header */}
-      <header className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-10">
-        <motion.div
+      <header className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-10">        <motion.div
           className="flex items-center space-x-2"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <Camera className="h-8 w-8 text-primary" />
+          <Image 
+            src="/logo.png" 
+            alt="InstaSearch Logo" 
+            width={32} 
+            height={32} 
+            className="h-8 w-8" 
+          />
           <span className="text-2xl font-heading font-bold gradient-text">InstaSearch</span>
         </motion.div>
         <ThemeToggle />

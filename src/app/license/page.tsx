@@ -1,7 +1,8 @@
-import { Camera, ExternalLink, Download, Heart, Users, Briefcase } from "lucide-react"
+import { ExternalLink, Download, Heart, Users, Briefcase } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function UnsplashLicense() {
   return (
@@ -9,9 +10,14 @@ export default function UnsplashLicense() {
       {/* Header */}
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <Camera className="h-8 w-8 text-primary" />
+          <div className="flex items-center justify-between">            <Link href="/" className="flex items-center gap-2">
+              <Image 
+                src="/logo.png" 
+                alt="InstaSearch Logo" 
+                width={32} 
+                height={32} 
+                className="h-8 w-8" 
+              />
               <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
                 InstaSearch
               </span>
@@ -27,10 +33,15 @@ export default function UnsplashLicense() {
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           {/* Hero Section */}
-          <div className="text-center mb-12">
-            <div className="flex justify-center mb-6">
+          <div className="text-center mb-12">            <div className="flex justify-center mb-6">
               <div className="p-4 bg-primary/10 rounded-full">
-                <Camera className="h-12 w-12 text-primary" />
+                <Image 
+                  src="/logo.png" 
+                  alt="InstaSearch Logo" 
+                  width={48} 
+                  height={48} 
+                  className="h-12 w-12" 
+                />
               </div>
             </div>
             <h1 className="text-4xl font-bold mb-4">Unsplash License</h1>

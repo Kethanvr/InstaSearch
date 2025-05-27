@@ -1,7 +1,8 @@
-import { Camera, FileText, CheckCircle, XCircle, AlertTriangle, Mail } from "lucide-react"
+import { FileText, CheckCircle, XCircle, AlertTriangle, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function TermsOfService() {
   return (
@@ -9,9 +10,14 @@ export default function TermsOfService() {
       {/* Header */}
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <Camera className="h-8 w-8 text-primary" />
+          <div className="flex items-center justify-between">            <Link href="/" className="flex items-center gap-2">
+              <Image 
+                src="/logo.png" 
+                alt="InstaSearch Logo" 
+                width={32} 
+                height={32} 
+                className="h-8 w-8" 
+              />
               <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
                 InstaSearch
               </span>
@@ -120,9 +126,14 @@ export default function TermsOfService() {
 
             {/* About the Images */}
             <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Camera className="h-5 w-5 text-primary" />
+              <CardHeader>                <CardTitle className="flex items-center gap-2">
+                  <Image 
+                    src="/logo.png" 
+                    alt="Logo" 
+                    width={20} 
+                    height={20} 
+                    className="h-5 w-5" 
+                  />
                   About the images
                 </CardTitle>
               </CardHeader>              <CardContent className="space-y-4">
