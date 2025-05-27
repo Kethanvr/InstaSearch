@@ -38,22 +38,21 @@ export function Footer() {
           {/* Quick Links */}
           <div className="space-y-4">
             <h3 className="font-semibold">Quick Links</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+            <ul className="space-y-2 text-sm text-muted-foreground">              <li>
+                <a href="/" className="hover:text-foreground transition-colors">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#search" className="hover:text-foreground transition-colors">
+                <a href="/search" className="hover:text-foreground transition-colors">
                   Search Images
                 </a>
               </li>
               <li>
-                <a href="#features" className="hover:text-foreground transition-colors">
+                <a href="/features" className="hover:text-foreground transition-colors">
                   Features
                 </a>
-              </li>              <li>
+              </li><li>
                 <a href="/contact" className="hover:text-foreground transition-colors">
                   About
                 </a>
