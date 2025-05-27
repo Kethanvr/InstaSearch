@@ -1,8 +1,9 @@
 "use client"
 
-import { Heart, Camera, Github, Twitter, Instagram } from "lucide-react"
+import { Heart, Github, Twitter, Instagram } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import Image from "next/image"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -12,9 +13,14 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <Camera className="h-8 w-8 text-primary" />
+          <div className="space-y-4">            <div className="flex items-center gap-2">
+              <Image 
+                src="/logo.png" 
+                alt="InstaSearch Logo" 
+                width={32} 
+                height={32} 
+                className="h-8 w-8" 
+              />
               <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
                 InstaSearch
               </span>

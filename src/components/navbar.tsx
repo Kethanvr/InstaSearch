@@ -2,12 +2,13 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Camera, Menu, X, Search } from "lucide-react"
+import { Menu, X, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 
 interface NavbarProps {
   showSearch?: boolean
@@ -29,10 +30,15 @@ export function Navbar({ showSearch = false, initialQuery = "" }: NavbarProps) {
   return (
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+        <div className="flex items-center justify-between h-16">          {/* Logo */}
           <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <Camera className="h-8 w-8 text-primary" />
+            <Image 
+              src="/logo.png" 
+              alt="InstaSearch Logo" 
+              width={32} 
+              height={32} 
+              className="h-8 w-8" 
+            />
             <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
               InstaSearch
             </span>
