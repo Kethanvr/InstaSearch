@@ -36,6 +36,10 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
+    "imagemin": "^9.0.1",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-pngquant": "^10.0.0",
+    "sharp": "^0.34.2",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.0",
     "typescript": "^5"
