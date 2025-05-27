@@ -54,19 +54,18 @@ export default function Contact() {
                   <Heart className="h-5 w-5 text-red-500" />
                   The Story Behind InstaSearch
                 </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
+              </CardHeader>              <CardContent className="space-y-4">
                 <p className="text-muted-foreground leading-relaxed">
-                  Built by <strong>Kethan VR</strong>, a passionate software developer and tech enthusiast, this platform is a reflection of creativity, learning, and a constant drive to solve real-world problems using technology. Whether it's an AI-powered tool, a responsive web app, or an educational resource, everything here is designed with precision, simplicity, and the end-user in mind.
+                  Built by <strong>Kethan VR</strong>, a passionate software developer and tech enthusiast, this platform is a reflection of creativity, learning, and a constant drive to solve real-world problems using technology. Whether it&apos;s an AI-powered tool, a responsive web app, or an educational resource, everything here is designed with precision, simplicity, and the end-user in mind.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  I'm a developer who believes in building things that matter. With a background in web development, UI/UX design, and AI integration, I focus on crafting powerful digital solutions that are accessible, functional, and future-ready.
+                  I&apos;m a developer who believes in building things that matter. With a background in web development, UI/UX design, and AI integration, I focus on crafting powerful digital solutions that are accessible, functional, and future-ready.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  This site is not just a showcase of my projects – it's a step towards creating meaningful impact through tech. Whether you're a fellow dev, a startup, or just curious about what I do, feel free to explore, connect, and collaborate!
+                  This site is not just a showcase of my projects – it&apos;s a step towards creating meaningful impact through tech. Whether you&apos;re a fellow dev, a startup, or just curious about what I do, feel free to explore, connect, and collaborate!
                 </p>
                 <div className="flex items-center gap-2 text-lg font-medium text-primary">
-                  Let's build the future together ✨
+                  Let&apos;s build the future together ✨
                 </div>
               </CardContent>
             </Card>
@@ -77,9 +76,8 @@ export default function Contact() {
                 <CardTitle className="flex items-center gap-2">
                   <Code className="h-5 w-5 text-primary" />
                   What I Do
-                </CardTitle>
-                <CardDescription>
-                  The technologies and areas I'm passionate about
+                </CardTitle>                <CardDescription>
+                  The technologies and areas I&apos;m passionate about
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -147,7 +145,7 @@ export default function Contact() {
                   📬 Contact
                 </CardTitle>
                 <CardDescription>
-                  Got a question, collaboration idea, or just wanna say hey? I'd love to hear from you.
+                  Got a question, collaboration idea, or just wanna say hey? I&apos;d love to hear from you.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -303,15 +301,13 @@ export default function Contact() {
                 </div>
               </CardContent>
             </Card>
-          </div>
-
-          {/* Footer Note */}
+          </div>          {/* Footer Note */}
           <div className="text-center mt-12 p-6 bg-gradient-to-r from-primary/10 to-purple/10 rounded-lg border">
             <p className="text-muted-foreground">
-              Thanks for checking out InstaSearch! Whether you're here to use the tool, explore the code, or just say hi - I appreciate you being here. 
+              Thanks for checking out InstaSearch! Whether you&apos;re here to use the tool, explore the code, or just say hi - I appreciate you being here. 
             </p>
             <p className="text-sm text-muted-foreground mt-2">
-              Let's create something amazing together! 🚀
+              Let&apos;s create something amazing together! 🚀
             </p>
           </div>
         </div>

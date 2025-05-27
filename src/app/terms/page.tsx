@@ -99,7 +99,7 @@ export default function TermsOfService() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <XCircle className="h-5 w-5 text-red-500" />
-                  What you can't do
+                  What you can&apos;t do
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -161,7 +161,7 @@ export default function TermsOfService() {
                   </li>
                   <li className="flex gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    I'm not responsible for how you use the images
+                    I&apos;m not responsible for how you use the images
                   </li>
                 </ul>
 
@@ -183,22 +183,21 @@ export default function TermsOfService() {
                 <p className="text-muted-foreground">
                   I built InstaSearch in my spare time and do my best to keep it working well, but:
                 </p>
-                <ul className="space-y-3">
-                  <li className="flex gap-3">
+                <ul className="space-y-3">                  <li className="flex gap-3">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0" />
-                    The app is provided "as is" without warranties
+                    The app is provided &quot;as is&quot; without warranties
                   </li>
                   <li className="flex gap-3">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0" />
-                    I can't guarantee it'll work perfectly 100% of the time
+                    I can&apos;t guarantee it&apos;ll work perfectly 100% of the time
                   </li>
                   <li className="flex gap-3">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0" />
-                    Unsplash's API might have outages (not my fault!)
+                    Unsplash&apos;s API might have outages (not my fault!)
                   </li>
                   <li className="flex gap-3">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0" />
-                    I'm not liable for any issues that arise from using the app
+                    I&apos;m not liable for any issues that arise from using the app
                   </li>
                 </ul>
               </CardContent>
@@ -238,9 +237,8 @@ export default function TermsOfService() {
                   Feedback and disputes
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground">
-                  Got a problem or suggestion? Email me and I'll do my best to help.
+              <CardContent className="space-y-4">                <p className="text-muted-foreground">
+                  Got a problem or suggestion? Email me and I&apos;ll do my best to help.
                 </p>
                 <p className="text-sm text-muted-foreground">
                   For legal disputes (hopefully never needed), these terms are governed by Indian law.

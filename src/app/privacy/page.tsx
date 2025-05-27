@@ -39,9 +39,8 @@ export default function PrivacyPolicy() {
                 <Shield className="h-12 w-12 text-primary" />
               </div>
             </div>
-            <h1 className="text-4xl font-bold mb-4">Privacy Policy</h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Your privacy matters. Here's how InstaSearch handles your data - kept simple and transparent.
+            <h1 className="text-4xl font-bold mb-4">Privacy Policy</h1>            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Your privacy matters. Here&apos;s how InstaSearch handles your data - kept simple and transparent.
             </p>
             <p className="text-sm text-muted-foreground mt-4">Last updated: January 2025</p>
           </div>
@@ -59,15 +58,14 @@ export default function PrivacyPolicy() {
                   The short version: Almost nothing.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground">
-                  InstaSearch doesn't require you to create an account or provide personal information. Here's what happens when you use the app:
+              <CardContent className="space-y-4">                <p className="text-muted-foreground">
+                  InstaSearch doesn&apos;t require you to create an account or provide personal information. Here&apos;s what happens when you use the app:
                 </p>
                 <ul className="space-y-3">
                   <li className="flex gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
                     <div>
-                      <strong>Search queries</strong> - When you search for images, that request goes directly to Unsplash's API. I don't store or track your searches.
+                      <strong>Search queries</strong> - When you search for images, that request goes directly to Unsplash&apos;s API. I don&apos;t store or track your searches.
                     </div>
                   </li>
                   <li className="flex gap-3">
@@ -91,7 +89,7 @@ export default function PrivacyPolicy() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Users className="h-5 w-5 text-green-500" />
-                  What I don't collect
+                  What I don&apos;t collect
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -134,11 +132,10 @@ export default function PrivacyPolicy() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="border rounded-lg p-4 space-y-2">
-                  <h4 className="font-semibold">Unsplash API</h4>
-                  <p className="text-sm text-muted-foreground">
-                    All images come from Unsplash. When you search or download images, you're interacting with their service.{" "}
+                  <h4 className="font-semibold">Unsplash API</h4>                  <p className="text-sm text-muted-foreground">
+                    All images come from Unsplash. When you search or download images, you&apos;re interacting with their service.{" "}
                     <a href="https://unsplash.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                      Check Unsplash's Privacy Policy
+                      Check Unsplash&apos;s Privacy Policy
                     </a>
                   </p>
                 </div>
@@ -147,7 +144,7 @@ export default function PrivacyPolicy() {
                   <p className="text-sm text-muted-foreground">
                     The app is hosted on Vercel, which handles the technical infrastructure.{" "}
                     <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                      See Vercel's Privacy Policy
+                      See Vercel&apos;s Privacy Policy
                     </a>
                   </p>
                 </div>
@@ -162,9 +159,8 @@ export default function PrivacyPolicy() {
                   Your rights
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground">
-                  Since I collect almost no personal data, there isn't much to manage. But if you have concerns:
+              <CardContent className="space-y-4">                <p className="text-muted-foreground">
+                  Since I collect almost no personal data, there isn&apos;t much to manage. But if you have concerns:
                 </p>
                 <ul className="space-y-2">
                   <li className="flex gap-3">
@@ -177,7 +173,7 @@ export default function PrivacyPolicy() {
                   </li>
                   <li className="flex gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    You can stop using the app anytime (though I hope you don't!)
+                    You can stop using the app anytime (though I hope you don&apos;t!)
                   </li>
                 </ul>
               </CardContent>

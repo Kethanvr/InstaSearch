@@ -131,7 +131,7 @@ export default function UnsplashLicense() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Users className="h-5 w-5 text-red-500" />
-                  What you can't do
+                  What you can&apos;t do
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -141,28 +141,26 @@ export default function UnsplashLicense() {
                   </p>
                   
                   <div className="space-y-3">
-                    <div className="flex gap-3">
-                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
+                    <div className="flex gap-3">                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
                       <div>
-                        <strong>Don't sell unaltered photos</strong> - You can't resell the photos as stock photography or compete with Unsplash
+                        <strong>Don&apos;t sell unaltered photos</strong> - You can&apos;t resell the photos as stock photography or compete with Unsplash
                       </div>
                     </div>
                     <div className="flex gap-3">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
                       <div>
-                        <strong>Don't imply endorsement</strong> - You can't suggest that people or brands in photos endorse your product
+                        <strong>Don&apos;t imply endorsement</strong> - You can&apos;t suggest that people or brands in photos endorse your product
+                      </div>
+                    </div>                    <div className="flex gap-3">
+                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
+                      <div>
+                        <strong>Don&apos;t use for harmful content</strong> - No using photos for illegal, harmful, or offensive purposes
                       </div>
                     </div>
                     <div className="flex gap-3">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
                       <div>
-                        <strong>Don't use for harmful content</strong> - No using photos for illegal, harmful, or offensive purposes
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
-                      <div>
-                        <strong>Don't redistribute as-is</strong> - You can't create a competing stock photo website with Unsplash content
+                        <strong>Don&apos;t redistribute as-is</strong> - You can&apos;t create a competing stock photo website with Unsplash content
                       </div>
                     </div>
                   </div>
@@ -173,23 +171,21 @@ export default function UnsplashLicense() {
             {/* Attribution */}
             <Card>
               <CardHeader>
-                <CardTitle>Do I need to give credit?</CardTitle>
-                <CardDescription>
-                  Attribution isn't required, but it's appreciated
+                <CardTitle>Do I need to give credit?</CardTitle>                <CardDescription>
+                  Attribution isn&apos;t required, but it&apos;s appreciated
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
                   <p className="font-medium text-yellow-800 dark:text-yellow-200 mb-2">
                     Attribution is not required, but photographers love it!
-                  </p>
-                  <p className="text-sm text-yellow-700 dark:text-yellow-300">
-                    When possible, it's nice to credit the photographer and link back to their Unsplash profile.
+                  </p>                  <p className="text-sm text-yellow-700 dark:text-yellow-300">
+                    When possible, it&apos;s nice to credit the photographer and link back to their Unsplash profile.
                   </p>
                 </div>
                 
                 <div className="space-y-3">
-                  <h4 className="font-medium">If you want to give credit, here's how:</h4>
+                  <h4 className="font-medium">If you want to give credit, here&apos;s how:</h4>
                   <div className="bg-muted/50 rounded-lg p-4 space-y-2">
                     <p className="text-sm font-medium">Simple format:</p>
                     <code className="text-sm bg-background px-2 py-1 rounded">
@@ -197,9 +193,8 @@ export default function UnsplashLicense() {
                     </code>
                   </div>
                   <div className="bg-muted/50 rounded-lg p-4 space-y-2">
-                    <p className="text-sm font-medium">With link:</p>
-                    <code className="text-sm bg-background px-2 py-1 rounded block">
-                      Photo by &lt;a href="[photographer_profile]"&gt;[Photographer Name]&lt;/a&gt; on &lt;a href="https://unsplash.com"&gt;Unsplash&lt;/a&gt;
+                    <p className="text-sm font-medium">With link:</p>                    <code className="text-sm bg-background px-2 py-1 rounded block">
+                      Photo by &lt;a href=&quot;[photographer_profile]&quot;&gt;[Photographer Name]&lt;/a&gt; on &lt;a href=&quot;https://unsplash.com&quot;&gt;Unsplash&lt;/a&gt;
                     </code>
                   </div>
                 </div>
@@ -226,7 +221,7 @@ export default function UnsplashLicense() {
                   <li className="flex gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
                     <div>
-                      <strong>Photographer info</strong> - When available, I show the photographer's name and profile
+                      <strong>Photographer info</strong> - When available, I show the photographer&apos;s name and profile
                     </div>
                   </li>
                   <li className="flex gap-3">

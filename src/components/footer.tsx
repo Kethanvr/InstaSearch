@@ -4,6 +4,7 @@ import { Heart, Github, Twitter, Instagram } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import Image from "next/image"
+import Link from "next/link"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -43,25 +44,24 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="font-semibold">Quick Links</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">              <li>
-                <a href="/" className="hover:text-foreground transition-colors">
+            <h3 className="font-semibold">Quick Links</h3>            <ul className="space-y-2 text-sm text-muted-foreground">              <li>
+                <Link href="/" className="hover:text-foreground transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/search" className="hover:text-foreground transition-colors">
+                <Link href="/search" className="hover:text-foreground transition-colors">
                   Search Images
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/features" className="hover:text-foreground transition-colors">
+                <Link href="/features" className="hover:text-foreground transition-colors">
                   Features
-                </a>
+                </Link>
               </li><li>
-                <a href="/contact" className="hover:text-foreground transition-colors">
+                <Link href="/contact" className="hover:text-foreground transition-colors">
                   About
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -98,27 +98,26 @@ export function Footer() {
             </ul>
           </div>          {/* Legal */}
           <div className="space-y-4">
-            <h3 className="font-semibold">Legal</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <h3 className="font-semibold">Legal</h3>            <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="/privacy" className="hover:text-foreground transition-colors">
+                <Link href="/privacy" className="hover:text-foreground transition-colors">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/terms" className="hover:text-foreground transition-colors">
+                <Link href="/terms" className="hover:text-foreground transition-colors">
                   Terms of Service
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/license" className="hover:text-foreground transition-colors">
+                <Link href="/license" className="hover:text-foreground transition-colors">
                   Unsplash License
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact" className="hover:text-foreground transition-colors">
+                <Link href="/contact" className="hover:text-foreground transition-colors">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

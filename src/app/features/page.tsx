@@ -6,10 +6,9 @@ import Image from "next/image"
 
 export default function Features() {
   const features = [
-    {
-      icon: Search,
+    {      icon: Search,
       title: "Instant Search",
-      description: "Type what you're looking for and get relevant results from millions of high-quality photos instantly.",
+      description: "Type what you&apos;re looking for and get relevant results from millions of high-quality photos instantly.",
       color: "text-blue-500",
       bgColor: "bg-blue-100 dark:bg-blue-950/20"
     },
@@ -141,7 +140,7 @@ export default function Features() {
           {/* Current Features */}
           <div className="mb-16">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">What's Available Now</h2>
+              <h2 className="text-3xl font-bold mb-4">What&apos;s Available Now</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 These features are live and ready to use in InstaSearch today
               </p>
@@ -183,9 +182,8 @@ export default function Features() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl font-bold text-primary">1</span>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Search</h3>
-                <p className="text-muted-foreground">
-                  Type what you're looking for in the search bar. Be specific for better results.
+                <h3 className="text-xl font-semibold mb-2">Search</h3>                <p className="text-muted-foreground">
+                  Type what you&apos;re looking for in the search bar. Be specific for better results.
                 </p>
               </div>
 
@@ -214,9 +212,8 @@ export default function Features() {
           {/* Upcoming Features */}
           <div className="mb-16">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Coming Soon</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                I'm constantly working on new features to make InstaSearch even better
+              <h2 className="text-3xl font-bold mb-4">Coming Soon</h2>              <p className="text-muted-foreground max-w-2xl mx-auto">
+                I&apos;m constantly working on new features to make InstaSearch even better
               </p>
             </div>
 
