@@ -4,7 +4,6 @@ import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { SearchSection } from "@/components/search-section"
 import { Footer } from "@/components/footer"
-import { Navbar } from "@/components/navbar"
 import { Skeleton } from "@/components/ui/skeleton"
 
 // Interface for Unsplash image
@@ -112,11 +111,8 @@ function SearchContent() {
       alert("Failed to download image. Please try again.")
     }
   }
-
   return (
-    <>
-      <Navbar showSearch={true} initialQuery={initialQuery} />
-      
+    <>      
       {error && (
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mx-4 mt-4">
           <p className="font-medium">Error</p>

@@ -87,36 +87,8 @@ export default function Features() {
       description: "Natural language search that understands what you really mean when you describe an image."
     }
   ]
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
-      {/* Header */}
-      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">            <Link href="/" className="flex items-center gap-2">
-              <Image 
-                src="/logo.png" 
-                alt="InstaSearch Logo" 
-                width={32} 
-                height={32} 
-                className="h-8 w-8" 
-              />
-              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                InstaSearch
-              </span>
-            </Link>
-            <div className="flex gap-2">
-              <Button asChild variant="outline">
-                <Link href="/">Back to Home</Link>
-              </Button>
-              <Button asChild>
-                <Link href="/search">Try Now</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Main Content */}
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto">
