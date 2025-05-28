@@ -1,7 +1,6 @@
 "use client";
 
 import { useAuth, useUser } from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
 
 export function ClerkDebug() {
   const { isLoaded, isSignedIn } = useAuth();

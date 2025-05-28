@@ -5,9 +5,7 @@ import { motion } from "framer-motion"
 import { Search, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { ThemeToggle } from "@/components/theme-toggle"
 import { useRouter } from "next/navigation"
-import Image from "next/image"
 
 export function Hero() {
   const [searchQuery, setSearchQuery] = useState("")

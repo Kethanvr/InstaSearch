@@ -1,8 +1,6 @@
 import { Mail, Github, Linkedin, Youtube, Twitter, Brain, Code, Palette, Zap, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import Link from "next/link"
-import Image from "next/image"
 import { Footer } from "@/components/footer"
 
 export default function Contact() {
