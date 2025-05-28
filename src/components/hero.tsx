@@ -66,26 +66,7 @@ export function Hero() {
             ease: "easeInOut",
           }}
         />
-      </div>
-
-      {/* Header */}
-      <header className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-10">        <motion.div
-          className="flex items-center space-x-2"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <Image 
-            src="/logo.png" 
-            alt="InstaSearch Logo" 
-            width={32} 
-            height={32} 
-            className="h-8 w-8" 
-          />
-          <span className="text-2xl font-heading font-bold gradient-text">InstaSearch</span>
-        </motion.div>
-        <ThemeToggle />
-      </header>
+      </div>      {/* Removed duplicate header - using global navbar instead */}
 
       {/* Main content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">

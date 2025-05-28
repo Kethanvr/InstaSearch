@@ -3,6 +3,8 @@ import { Inter, Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { QueryProvider } from "@/components/query-provider";
+import { ClerkProvider } from "@clerk/nextjs";
+import { DynamicNavbar } from "@/components/dynamic-navbar";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -68,24 +70,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <meta name="theme-color" content="#000000" />
-      </head>
-      <body
-        className={`${inter.variable} ${outfit.variable} ${playfair.variable} font-sans antialiased`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <head>
+          <meta name="theme-color" content="#000000" />
+        </head>
+        <body
+          className={`${inter.variable} ${outfit.variable} ${playfair.variable} font-sans antialiased`}
         >
-          <QueryProvider>
-            {children}
-          </QueryProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem={false}
+            disableTransitionOnChange
+            storageKey="instasearch-theme"
+          >
+            <QueryProvider>
+              <DynamicNavbar />
+              {children}
+            </QueryProvider>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
