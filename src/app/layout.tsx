@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { QueryProvider } from "@/components/query-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { DynamicNavbar } from "@/components/dynamic-navbar";
+import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -86,7 +88,9 @@ export default function RootLayout({
             storageKey="instasearch-theme"
           >
             <QueryProvider>
-              <DynamicNavbar />
+              <Suspense fallback={<Skeleton className="h-16 w-full" />}>
+                <DynamicNavbar />
+              </Suspense>
               {children}
             </QueryProvider>
           </ThemeProvider>
