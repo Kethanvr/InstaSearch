@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
+import { ClientOnly } from "@/components/client-only"
 
 export function Hero() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -129,19 +130,19 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />              <Input
                 type="text"
                 placeholder="Search for images... (e.g., mountains, city, abstract)"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 h-12 text-base bg-background/80 backdrop-blur-sm border-primary/20 focus:border-primary/50"
+                suppressHydrationWarning
               />
-            </div>
-            <Button 
+            </div>            <Button 
               type="submit" 
               size="lg" 
               className="h-12 px-8 gradient-bg hover:opacity-90 transition-opacity"
+              suppressHydrationWarning
             >
               Search Images
             </Button>
@@ -154,16 +155,17 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <span className="text-sm text-muted-foreground mr-2">Popular:</span>
-            {popularSearches.map((term) => (
+            <span className="text-sm text-muted-foreground mr-2">Popular:</span>            {popularSearches.map((term) => (
               <Button
                 key={term}
                 variant="outline"
                 size="sm"
-                className="text-xs h-8 px-3 bg-background/50 backdrop-blur-sm border-primary/20 hover:border-primary/50 hover:bg-primary/5"                onClick={() => {
+                className="text-xs h-8 px-3 bg-background/50 backdrop-blur-sm border-primary/20 hover:border-primary/50 hover:bg-primary/5"
+                onClick={() => {
                   setSearchQuery(term)
                   router.push(`/search?q=${encodeURIComponent(term)}`)
                 }}
+                suppressHydrationWarning
               >
                 {term}
               </Button>

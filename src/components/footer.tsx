@@ -28,15 +28,14 @@ export function Footer() {
             </div>
             <p className="text-muted-foreground">
               Discover and download beautiful, high-quality images from Unsplash with our modern search interface.
-            </p>
-            <div className="flex gap-2">
-              <Button variant="ghost" size="icon" className="h-8 w-8">
+            </p>            <div className="flex gap-2">
+              <Button variant="ghost" size="icon" className="h-8 w-8" suppressHydrationWarning>
                 <Github className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8">
+              <Button variant="ghost" size="icon" className="h-8 w-8" suppressHydrationWarning>
                 <Twitter className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8">
+              <Button variant="ghost" size="icon" className="h-8 w-8" suppressHydrationWarning>
                 <Instagram className="h-4 w-4" />
               </Button>
             </div>
