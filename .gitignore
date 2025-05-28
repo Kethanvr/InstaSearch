@@ -12,7 +12,8 @@ out/
 dist/
 build/
 DEPLOYMENT_GUIDE.md
-
+.env.local.example
+.env.development.local.example
 # Runtime data
 pids
 *.pid
