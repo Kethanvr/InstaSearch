@@ -108,11 +108,11 @@ function SearchContent() {
       window.URL.revokeObjectURL(url)
     } catch (error) {
       console.error("Download failed:", error)
-      alert("Failed to download image. Please try again.")
-    }
+      alert("Failed to download image. Please try again.")    }
   }
+
   return (
-    <>      
+    <div className="min-h-screen">      
       {error && (
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mx-4 mt-4">
           <p className="font-medium">Error</p>
@@ -131,30 +131,28 @@ function SearchContent() {
       />
       
       <Footer />
-    </>
+    </div>
   )
 }
 
 export default function SearchPage() {
   return (
-    <main className="min-h-screen">
-      <Suspense fallback={
-        <div className="min-h-screen">
-          <div className="h-16 bg-background border-b">
-            <Skeleton className="h-full w-full" />
-          </div>
-          <div className="p-4">
-            <Skeleton className="h-8 w-48 mb-4" />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <Skeleton key={i} className="aspect-square w-full" />
-              ))}
-            </div>
+    <Suspense fallback={
+      <div className="min-h-screen">
+        <div className="h-16 bg-background border-b">
+          <Skeleton className="h-full w-full" />
+        </div>
+        <div className="p-4">
+          <Skeleton className="h-8 w-48 mb-4" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <Skeleton key={i} className="aspect-square w-full" />
+            ))}
           </div>
         </div>
-      }>
-        <SearchContent />
-      </Suspense>
-    </main>
+      </div>
+    }>
+      <SearchContent />
+    </Suspense>
   )
 }

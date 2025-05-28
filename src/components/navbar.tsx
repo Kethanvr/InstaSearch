@@ -59,7 +59,7 @@ function NavbarContent({ showSearch = false, initialQuery = "" }: NavbarProps) {
                 height={32} 
                 className="h-8 w-8" 
                 priority
-              />              <span className="text-xl font-bold text-black" style={{ fontFamily: 'Georgia, serif' }}>
+              />              <span className="text-xl font-bold text-black font-sans">
                 InstaSearch
               </span>
             </Link>

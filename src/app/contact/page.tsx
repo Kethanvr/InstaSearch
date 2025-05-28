@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 import Image from "next/image"
+import { Footer } from "@/components/footer"
 
 export default function Contact() {
   return (
@@ -286,10 +287,10 @@ export default function Contact() {
             </p>
             <p className="text-sm text-muted-foreground mt-2">
               Let&apos;s create something amazing together! 🚀
-            </p>
-          </div>
+            </p>          </div>
         </div>
       </main>
+      <Footer />
     </div>
   )
 }

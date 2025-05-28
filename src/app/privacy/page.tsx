@@ -183,10 +183,10 @@ export default function PrivacyPolicy() {
           <div className="text-center mt-12 p-6 bg-muted/50 rounded-lg">
             <p className="text-sm text-muted-foreground italic">
               This policy reflects my commitment to keeping InstaSearch simple, transparent, and respectful of your privacy.
-            </p>
-          </div>
+            </p>          </div>
         </div>
       </main>
+      <Footer />
     </div>
   )
 }
