@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
-import { ClientOnly } from "@/components/client-only"
 
 export function Hero() {
   const [searchQuery, setSearchQuery] = useState("")

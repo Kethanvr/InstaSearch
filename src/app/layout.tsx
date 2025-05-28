@@ -30,11 +30,12 @@ export const metadata: Metadata = {
   authors: [{ name: "Kethan VR" }],
   icons: {
     icon: [
+      { url: '/favicon.ico', sizes: 'any' },
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
       { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
     ],
-    shortcut: '/favicon-32x32.png',
+    shortcut: '/favicon.ico',
     apple: '/apple-touch-icon.png',
     other: [
       {
@@ -47,25 +48,17 @@ export const metadata: Metadata = {
       },
     ],
   },
+  manifest: '/manifest.json',
   openGraph: {
     title: "InstaSearch - Discover Beautiful Images Instantly",
     description: "Search and download stunning, royalty-free images from Unsplash with InstaSearch.",
     type: "website",
     url: "https://instasearch.kethanvr.me",
-    images: [
-      {
-        url: "/logo.png",
-        width: 512,
-        height: 512,
-        alt: "InstaSearch Logo",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "InstaSearch - Discover Beautiful Images Instantly",
     description: "Search and download stunning, royalty-free images from Unsplash with InstaSearch.",
-    images: ["/logo.png"],
   },
 };
 
@@ -77,7 +70,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#000000" />
       </head>
       <body
