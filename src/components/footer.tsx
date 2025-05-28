@@ -21,8 +21,7 @@ export function Footer() {
                 width={32} 
                 height={32} 
                 className="h-8 w-8" 
-              />
-              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              />              <span className="text-2xl font-bold text-black" style={{ fontFamily: 'Georgia, serif' }}>
                 InstaSearch
               </span>
             </div>
