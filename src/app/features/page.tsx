@@ -287,6 +287,7 @@ export default function Features() {
                         width={16} 
                         height={16} 
                         className="h-4 w-4 mr-2" 
+                        unoptimized={false}
                       />
                       View Homepage
                     </Link>

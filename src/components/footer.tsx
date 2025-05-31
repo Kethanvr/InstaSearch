@@ -21,7 +21,9 @@ export function Footer() {
                 width={32} 
                 height={32} 
                 className="h-8 w-8" 
-              />              <span className="text-2xl font-bold text-black font-sans">
+                priority
+                unoptimized={false}
+              /><span className="text-2xl font-bold text-black font-sans">
                 InstaSearch
               </span>
             </div>

@@ -49,8 +49,7 @@ function NavbarContent({ showSearch = false, initialQuery = "" }: NavbarProps) {
       <div className="container mx-auto px-6 h-full">
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
-          <div>
-            <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <div>            <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
               <Image 
                 src="/logo.png" 
                 alt="InstaSearch Logo" 
@@ -58,7 +57,8 @@ function NavbarContent({ showSearch = false, initialQuery = "" }: NavbarProps) {
                 height={32} 
                 className="h-8 w-8" 
                 priority
-              />              <span className="text-xl font-bold text-black font-sans">
+                unoptimized={false}
+              /><span className="text-xl font-bold text-black font-sans">
                 InstaSearch
               </span>
             </Link>
