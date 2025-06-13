@@ -17,7 +17,7 @@ export default function Icon() {
       // ImageResponse JSX element
       <div
         style={{
-          fontSize: 24,
+          fontSize: 20,
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           width: '100%',
           height: '100%',
@@ -28,7 +28,7 @@ export default function Icon() {
           borderRadius: '20%',
         }}
       >
-        I
+        🔍
       </div>
     ),
     // ImageResponse options
