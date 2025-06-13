@@ -106,7 +106,7 @@ export default function TermsOfService() {
             <Card>
               <CardHeader>                <CardTitle className="flex items-center gap-2">
                   <Image 
-                    src="/logo.png" 
+                    src="/search-logo.png" 
                     alt="Logo" 
                     width={20} 
                     height={20} 

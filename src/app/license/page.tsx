@@ -14,7 +14,7 @@ export default function UnsplashLicense() {
           <div className="text-center mb-12">            <div className="flex justify-center mb-6">
               <div className="p-4 bg-primary/10 rounded-full">
                 <Image 
-                  src="/logo.png" 
+                  src="/search-logo.png" 
                   alt="InstaSearch Logo" 
                   width={48} 
                   height={48} 

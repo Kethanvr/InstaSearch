@@ -74,13 +74,11 @@ function NavbarContent({ showSearch = false, initialQuery = "" }: NavbarProps) {
       <div className="container mx-auto px-6 h-full">
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
-          <div>
-            <Link
+          <div>            <Link
               href="/"
               className="flex items-center gap-3 hover:opacity-80 transition-opacity"
-            >
-              <Image
-                src="/logo.png"
+            >              <Image
+                src="/search-icon.png"
                 alt="InstaSearch Logo"
                 width={32}
                 height={32}
