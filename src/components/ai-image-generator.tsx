@@ -8,6 +8,7 @@ import { Loader2, Sparkles, Wand2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { ClientWrapper } from "@/components/client-wrapper";
 
 interface GeneratedImage {
   url: string;
