@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,7 +12,7 @@ import Image from "next/image";
 interface GeneratedImage {
   url: string;
   prompt: string;
-  timestamp: Date;
+  id: string;
 }
 
 export function AIImageGenerator() {
@@ -20,6 +20,11 @@ export function AIImageGenerator() {
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImages, setGeneratedImages] = useState<GeneratedImage[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const generateImage = async () => {
     if (!prompt.trim()) return;
@@ -40,13 +45,11 @@ export function AIImageGenerator() {
 
       if (!response.ok) {
         throw new Error(data.error || "Failed to generate image");
-      }
-
-      if (data.success && data.images && data.images.length > 0) {
-        const newImages = data.images.map((imageUrl: string) => ({
+      }      if (data.success && data.images && data.images.length > 0) {
+        const newImages = data.images.map((imageUrl: string, index: number) => ({
           url: imageUrl,
           prompt,
-          timestamp: new Date(),
+          id: `${Date.now()}-${index}`,
         }));
         setGeneratedImages((prev) => [...newImages, ...prev]);
         setPrompt("");
@@ -100,14 +103,16 @@ export function AIImageGenerator() {
         >
           <Card className="border border-border/50 bg-card/50 backdrop-blur-sm">
             <CardContent className="p-6">
-              <div className="flex gap-3">
-                <div className="relative flex-1">
+              <div className="flex gap-3">                <div className="relative flex-1">
                   <Input
                     placeholder="Describe your image... (e.g., 'A peaceful sunset over mountains')"
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
                     onKeyPress={handleKeyPress}
                     disabled={isLoading}
+                    suppressHydrationWarning={true}
+                    autoComplete="off"
+                    data-form-type="other"
                     className="h-12 text-base bg-background/80 border-border/50 focus:border-foreground/20"
                   />
                 </div>
@@ -157,10 +162,9 @@ export function AIImageGenerator() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
-            >
-              {generatedImages.slice(0, 2).map((image, index) => (
+            >              {generatedImages.slice(0, 2).map((image, index) => (
                 <motion.div
-                  key={`${image.timestamp.getTime()}-${index}`}
+                  key={`${image.id}-${index}`}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
