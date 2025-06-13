@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
 import {
   Loader2,
   Send,
@@ -12,13 +13,11 @@ import {
   Wand2,
   User,
   Bot,
-  ArrowLeft,
   Sparkles,
   Search,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSearchParams, useRouter } from "next/navigation";
-import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 interface Message {
   id: string;
@@ -31,10 +30,8 @@ interface Message {
 function AIChatContent() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [isLoading, setIsLoading] = useState(false);  const messagesEndRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   useEffect(() => {
     const initialPrompt = searchParams.get("prompt");
@@ -263,10 +260,11 @@ function AIChatContent() {
 
                         {message.image && (
                           <div className="mt-4">
-                            <div className="relative group rounded-lg overflow-hidden">
-                              <img
+                            <div className="relative group rounded-lg overflow-hidden">                              <Image
                                 src={message.image}
                                 alt="Generated image"
+                                width={500}
+                                height={500}
                                 className="w-full max-w-md rounded-lg border border-border/20 shadow-lg transition-transform duration-200 group-hover:scale-[1.02]"
                               />
                               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg flex items-center justify-center gap-3">
