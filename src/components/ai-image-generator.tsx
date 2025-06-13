@@ -73,38 +73,53 @@ export function AIImageGenerator() {
     <section className="py-16 bg-background">
       <div className="container mx-auto px-6 max-w-4xl">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
+        <ClientWrapper
+          fallback={
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 mb-4">
+                <Wand2 className="h-5 w-5 text-foreground" />
+                <span className="text-sm font-medium text-muted-foreground">
+                  Powered by InstaSearch AI
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+                Create with AI
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Transform your ideas into stunning images with our advanced
+                artificial intelligence
+              </p>
+            </div>
+          }
         >
-          <div className="inline-flex items-center gap-2 mb-4">
-            <Wand2 className="h-5 w-5 text-foreground" />
-            <span className="text-sm font-medium text-muted-foreground">
-              Powered by InstaSearch AI
-            </span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-            Create with AI
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Transform your ideas into stunning images with our advanced
-            artificial intelligence
-          </p>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <div className="inline-flex items-center gap-2 mb-4">
+              <Wand2 className="h-5 w-5 text-foreground" />
+              <span className="text-sm font-medium text-muted-foreground">
+                Powered by InstaSearch AI
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+              Create with AI
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Transform your ideas into stunning images with our advanced
+              artificial intelligence
+            </p>
+          </motion.div>
+        </ClientWrapper>
 
         {/* Input Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="mb-8"
-        >
+        <div className="mb-8">
           <Card className="border border-border/50 bg-card/50 backdrop-blur-sm">
             <CardContent className="p-6">
-              <div className="flex gap-3">                <div className="relative flex-1">
+              <div className="flex gap-3">
+                <div className="relative flex-1">
                   <Input
                     placeholder="Describe your image... (e.g., 'A peaceful sunset over mountains')"
                     value={prompt}
@@ -134,13 +149,9 @@ export function AIImageGenerator() {
               </div>
 
               {error && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  className="mt-4 text-red-600 text-sm p-3 bg-red-50 dark:bg-red-950/20 rounded-md border border-red-200 dark:border-red-800"
-                >
+                <div className="mt-4 text-red-600 text-sm p-3 bg-red-50 dark:bg-red-950/20 rounded-md border border-red-200 dark:border-red-800">
                   {error}
-                </motion.div>
+                </div>
               )}
 
               <div className="mt-4 text-center">
@@ -153,44 +164,48 @@ export function AIImageGenerator() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
 
         {/* Generated Images Preview */}
-        <AnimatePresence>
-          {generatedImages.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
-            >              {generatedImages.slice(0, 2).map((image, index) => (
-                <motion.div
-                  key={`${image.id}-${index}`}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="group"
-                >
-                  <Card className="overflow-hidden border border-border/50 hover:border-border transition-colors">
-                    <div className="aspect-video relative">                      <Image
-                        src={image.url}
-                        alt={image.prompt}
-                        width={400}
-                        height={300}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <CardContent className="p-4">
-                      <p className="text-sm text-muted-foreground line-clamp-2">
-                        &quot;{image.prompt}&quot;
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <ClientWrapper>
+          <AnimatePresence>
+            {generatedImages.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
+              >
+                {generatedImages.slice(0, 2).map((image, index) => (
+                  <motion.div
+                    key={`${image.id}-${index}`}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="group"
+                  >
+                    <Card className="overflow-hidden border border-border/50 hover:border-border transition-colors">
+                      <div className="aspect-video relative">
+                        <Image
+                          src={image.url}
+                          alt={image.prompt}
+                          width={400}
+                          height={300}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <CardContent className="p-4">
+                        <p className="text-sm text-muted-foreground line-clamp-2">
+                          &quot;{image.prompt}&quot;
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </ClientWrapper>
 
         {/* Show more link */}
         {generatedImages.length > 2 && (
@@ -206,17 +221,29 @@ export function AIImageGenerator() {
 
         {/* Empty State */}
         {generatedImages.length === 0 && !isLoading && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-8 text-muted-foreground"
+          <ClientWrapper
+            fallback={
+              <div className="text-center py-8 text-muted-foreground">
+                <Wand2 className="h-12 w-12 mx-auto mb-3 opacity-50" />
+                <p className="text-base">Ready to create something amazing?</p>
+                <p className="text-sm">
+                  Enter a description above to generate your first AI image
+                </p>
+              </div>
+            }
           >
-            <Wand2 className="h-12 w-12 mx-auto mb-3 opacity-50" />
-            <p className="text-base">Ready to create something amazing?</p>
-            <p className="text-sm">
-              Enter a description above to generate your first AI image
-            </p>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-8 text-muted-foreground"
+            >
+              <Wand2 className="h-12 w-12 mx-auto mb-3 opacity-50" />
+              <p className="text-base">Ready to create something amazing?</p>
+              <p className="text-sm">
+                Enter a description above to generate your first AI image
+              </p>
+            </motion.div>
+          </ClientWrapper>
         )}
       </div>
     </section>
