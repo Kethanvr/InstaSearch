@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, Sparkles, Wand2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 interface GeneratedImage {
   url: string;
@@ -166,10 +167,11 @@ export function AIImageGenerator() {
                   className="group"
                 >
                   <Card className="overflow-hidden border border-border/50 hover:border-border transition-colors">
-                    <div className="aspect-video relative">
-                      <img
+                    <div className="aspect-video relative">                      <Image
                         src={image.url}
                         alt={image.prompt}
+                        width={400}
+                        height={300}
                         className="w-full h-full object-cover"
                       />
                     </div>
