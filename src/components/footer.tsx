@@ -15,7 +15,7 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">            <div className="flex items-center gap-2">              <Image 
-                src="/search-icon.png" 
+                src="https://img.icons8.com/fluent-systems-filled/512/228BE6/google-web-search.png" 
                 alt="InstaSearch Logo" 
                 width={32} 
                 height={32} 

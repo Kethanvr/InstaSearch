@@ -78,7 +78,7 @@ function NavbarContent({ showSearch = false, initialQuery = "" }: NavbarProps) {
               href="/"
               className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             >              <Image
-                src="/search-icon.png"
+                src="https://img.icons8.com/fluent-systems-filled/512/228BE6/google-web-search.png"
                 alt="InstaSearch Logo"
                 width={32}
                 height={32}
