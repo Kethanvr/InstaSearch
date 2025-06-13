@@ -6,12 +6,13 @@
   <h3>Beautiful Images, Found Instantly</h3>
   <p>A clean, fast way to discover and download amazing photos from Unsplash</p>
 
-  ![Next.js](https://img.shields.io/badge/Next.js-15.3.2-black?logo=next.js&logoColor=white)
-  ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript&logoColor=white)
-  ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white)
-  ![License](https://img.shields.io/badge/License-MIT-green)
+![Next.js](https://img.shields.io/badge/Next.js-15.3.2-black?logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-  [🚀 Live Demo](#) | [� Privacy](./PRIVACY.md) | [� Terms](./TERMS.md) | [� Contact](./CONTACT.md)
+[🚀 Live Demo](#) | [� Privacy](./PRIVACY.md) | [� Terms](./TERMS.md) | [� Contact](./CONTACT.md)
+
 </div>
 
 ---
@@ -23,8 +24,9 @@ I built InstaSearch because I was tired of clunky stock photo sites. You know th
 InstaSearch cuts through all that noise. Just search, filter if you want, and download. That's it.
 
 **Who might find this useful:**
+
 - Designers who need good photos fast
-- Developers building mockups or demos  
+- Developers building mockups or demos
 - Content creators looking for backgrounds
 - Students working on presentations
 - Anyone who appreciates clean, simple tools
@@ -43,11 +45,14 @@ InstaSearch cuts through all that noise. Just search, filter if you want, and do
 
 **⬇️ Download options** - Get the size you need: small for web, large for print, or the full resolution
 
+**🤖 AI Image Generation** - Create custom images from text prompts using Google's Gemini AI (NEW!)
+
 **⚡ Actually fast** - No loading spinners that make you question your internet connection
 
 ### Coming up
 
 I'm working on some cool stuff for the future:
+
 - **User accounts** - Save your favorite images
 - **Collections** - Organize images into folders
 - **Download history** - See what you've grabbed before
@@ -56,6 +61,7 @@ I'm working on some cool stuff for the future:
 No crazy timelines or promises, just building when I can.
 
 ---
+
 ## How to run it yourself
 
 Want to tinker with the code or run it locally? Here's how:
@@ -74,21 +80,30 @@ npm run dev
 
 Then open http://localhost:3000 and you're good to go.
 
-**Need your own Unsplash API key?** Create a `.env.local` file and add:
+**Need your own API keys?** Create a `.env.local` file and add:
+
 ```
-NEXT_PUBLIC_UNSPLASH_ACCESS_KEY=your_key_here
+# For Unsplash image search
+NEXT_PUBLIC_UNSPLASH_ACCESS_KEY=your_unsplash_key_here
+
+# For AI image generation (NEW!)
+GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
-Get a free key from [Unsplash Developers](https://unsplash.com/developers) - takes like 2 minutes.
+- Get a free Unsplash key from [Unsplash Developers](https://unsplash.com/developers)
+- Get a free Gemini API key from [Google AI Studio](https://ai.google.dev/gemini-api/docs/api-key)
+
+Both take just a couple of minutes to set up!
 
 ---
 
 ## What's under the hood
 
 Built with stuff I actually enjoy working with:
+
 - **Next.js 15** - Because it just works and the new features are solid
 - **TypeScript** - Saves me from my own mistakes
-- **Tailwind CSS** - Fast styling without the CSS headaches  
+- **Tailwind CSS** - Fast styling without the CSS headaches
 - **Framer Motion** - Makes things move nicely
 - **Unsplash API** - Where all the beautiful photos come from
 
