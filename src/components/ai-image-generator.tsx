@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -21,11 +21,6 @@ export function AIImageGenerator() {
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImages, setGeneratedImages] = useState<GeneratedImage[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const generateImage = async () => {
     if (!prompt.trim()) return;
@@ -46,12 +41,15 @@ export function AIImageGenerator() {
 
       if (!response.ok) {
         throw new Error(data.error || "Failed to generate image");
-      }      if (data.success && data.images && data.images.length > 0) {
-        const newImages = data.images.map((imageUrl: string, index: number) => ({
-          url: imageUrl,
-          prompt,
-          id: `${Date.now()}-${index}`,
-        }));
+      }
+      if (data.success && data.images && data.images.length > 0) {
+        const newImages = data.images.map(
+          (imageUrl: string, index: number) => ({
+            url: imageUrl,
+            prompt,
+            id: `${Date.now()}-${index}`,
+          })
+        );
         setGeneratedImages((prev) => [...newImages, ...prev]);
         setPrompt("");
       }
