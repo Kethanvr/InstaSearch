@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://instasearch.kethanvr.me/og-image.jpg",
+        url: "https://instasearch.kethanvr.me/opengraph-image",
         width: 1200,
         height: 630,
         alt: "InstaSearch - Beautiful Image Search Platform",
@@ -104,7 +104,7 @@ export const metadata: Metadata = {
     description:
       "Search and download stunning, royalty-free images from Unsplash with InstaSearch.",
     creator: "@kethanvr",
-    images: ["https://instasearch.kethanvr.me/og-image.jpg"],
+    images: ["https://instasearch.kethanvr.me/opengraph-image"],
   },
   alternates: {
     canonical: "https://instasearch.kethanvr.me",

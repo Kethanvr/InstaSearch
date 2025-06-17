@@ -32,7 +32,9 @@ interface UnsplashImage {
 }
 
 // Unsplash API configuration
-const UNSPLASH_ACCESS_KEY = "ggbXfyFRtwZKhpPldtEGvhBQ6OqbVNCa-fkjJYTk1eY";
+const UNSPLASH_ACCESS_KEY =
+  process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY ||
+  "ggbXfyFRtwZKhpPldtEGvhBQ6OqbVNCa-fkjJYTk1eY";
 const UNSPLASH_API_URL = "https://api.unsplash.com";
 
 function SearchContent() {

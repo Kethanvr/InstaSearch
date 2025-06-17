@@ -22,7 +22,7 @@ export function generateMetadata({
   type = "website",
 }: SEOConfig): Metadata {
   const baseUrl = "https://instasearch.kethanvr.me";
-  const defaultImage = `${baseUrl}/og-image.jpg`;
+  const defaultImage = `${baseUrl}/opengraph-image`;
 
   const fullTitle = title
     ? `${title} | InstaSearch - Beautiful Image Search`

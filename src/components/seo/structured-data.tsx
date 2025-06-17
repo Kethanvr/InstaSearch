@@ -79,7 +79,7 @@ export function StructuredData({ type, data }: StructuredDataProps) {
           "Multiple search filters",
           "Collection management",
         ],
-        screenshot: "https://instasearch.kethanvr.me/og-image.jpg",
+        screenshot: "https://instasearch.kethanvr.me/opengraph-image",
         ...data,
       };
       break;
